@@ -1,5 +1,43 @@
 {% extends 'templates/app.twig' %}
 
 {% block content %}
-  Home
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Add device
+
+          </div>
+          <div class="jumbotron">
+            <h3>{{ auth.user.name }}</h3>
+          </div>
+          <div class="panel-body">
+            <form role="form" action="{{ path_for('auth.signin') }}" method="post" autocomplete="on">
+              <fieldset>
+
+                <div class="form-group{{ errors.name ? ' has-error' : '' }}">
+                  <label for="name">Name</label>
+                  <input class="form-control" placeholder="Name" name="name" type="text" id="name"  value="{{ old.name }}" autofocus>
+                    {% if errors.name %}
+                      <span class="help-block">{{ errors.name | first }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group{{ errors.password ? ' has-error' : '' }}">
+                  <label for="type">Type</label>
+                  <input class="form-control" placeholder="Type" name="type" type="text" id="type" >
+                    {% if errors.password %}
+                      <span class="help-block">{{ errors.password | first }}</span>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-lg btn-info btn-block">Add</button>
+                  {{ csrf.field | raw }}
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
