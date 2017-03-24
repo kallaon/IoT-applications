@@ -28,6 +28,9 @@ $app->group('', function (){
 
 $app->group('', function (){
 
+    //ADD DEVICE
+    $this->post('/home','App\Controllers\Auth\PasswordController:postAddDevice');
+
     //SIGN OUT
     $this->get('/auth/signout','App\Controllers\Auth\AuthController:getSignOut')->setName('auth.signout');
 
