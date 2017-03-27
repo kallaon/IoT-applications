@@ -1,5 +1,7 @@
 <?php
 
+
+use Respect\Validation\Validator as v;
 /**
  * Class to handle all db operations
  * This class will have CRUD methods for database tables
@@ -18,6 +20,8 @@ class DbHandler {
         $this->conn = $db->connect();
     }
 
+
+
     /* ------------- `users` table method ------------------ */
 
     /**
@@ -26,7 +30,11 @@ class DbHandler {
      * @param String $email User login email id
      * @param String $password User login password
      */
-    public function createUser($name, $email, $password) {
+
+
+    // nemalo by tu byť
+
+  /*  public function createUser($name, $email, $password) {
         require_once 'PassHash.php';
         $response = array();
 
@@ -39,7 +47,7 @@ class DbHandler {
             $api_key = $this->generateApiKey();
 
             // insert query
-            $stmt = $this->conn->prepare("INSERT INTO users(name, email, password_hash, api_key, status) values(?, ?, ?, ?, 1)");
+            $stmt = $this->conn->prepare("INSERT INTO user(name, email, password_hash, api_key, created_at, updated_at) values(?, ?, ?, ?, 1)");
             $stmt->bind_param("ssss", $name, $email, $password_hash, $api_key);
 
             $result = $stmt->execute();
@@ -61,6 +69,8 @@ class DbHandler {
 
         return $response;
     }
+*/
+
 
     /**
      * Checking user login
@@ -70,7 +80,7 @@ class DbHandler {
      */
     public function checkLogin($email, $password) {
         // fetching user by email
-        $stmt = $this->conn->prepare("SELECT password_hash FROM users WHERE email = ?");
+        $stmt = $this->conn->prepare("SELECT password_hash FROM user WHERE email = ?");
 
         $stmt->bind_param("s", $email);
 
@@ -237,6 +247,8 @@ class DbHandler {
      * Fetching single task
      * @param String $task_id id of the task
      */
+
+    //UPDATE `device` SET `device_name` = 'flow1' WHERE `device`.`id_device` = 4;
     public function getTask($task_id, $user_id) {
         $stmt = $this->conn->prepare("SELECT t.id, t.task, t.status, t.created_at from tasks t, user_tasks ut WHERE t.id = ? AND ut.task_id = t.id AND ut.user_id = ?");
         $stmt->bind_param("ii", $task_id, $user_id);
@@ -262,6 +274,7 @@ class DbHandler {
      * @param String $user_id id of the user
      */
     public function getAllUserTasks($user_id) {
+
         $stmt = $this->conn->prepare("SELECT t.* FROM tasks t, user_tasks ut WHERE t.id = ut.task_id AND ut.user_id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
@@ -276,6 +289,7 @@ class DbHandler {
      * @param String $task task text
      * @param String $status task status
      */
+    //UPDATE `device` SET `device_name` = 'flow1' WHERE `device`.`id_device` = 4;
     public function updateTask($user_id, $task_id, $task, $status) {
         $stmt = $this->conn->prepare("UPDATE tasks t, user_tasks ut set t.task = ?, t.status = ? WHERE t.id = ? AND t.id = ut.task_id AND ut.user_id = ?");
         $stmt->bind_param("siii", $task, $status, $task_id, $user_id);
