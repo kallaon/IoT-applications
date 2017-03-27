@@ -1,7 +1,7 @@
 <?php
 
 use Respect\Validation\Validator as v;
-
+use Illuminate\Database\Capsule\Manager as Capsule;
 session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -25,7 +25,7 @@ $app = new \Slim\App([
 
 $container = $app->getContainer();
 
-$capsule = new \Illuminate\Database\Capsule\Manager;
+$capsule = new Capsule;
 $capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();

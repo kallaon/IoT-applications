@@ -17,6 +17,8 @@ $app->group('', function (){
     $this->get('/auth/signin','App\Controllers\Auth\AuthController:getSignIn')->setName('auth.signin');
     $this->post('/auth/signin','App\Controllers\Auth\AuthController:postSignIn');
 
+
+
 })->add(new \App\Middleware\GuestMiddleware($container));
 
 
@@ -29,7 +31,8 @@ $app->group('', function (){
 $app->group('', function (){
 
     //ADD DEVICE
-    $this->post('/home','App\Controllers\Auth\PasswordController:postAddDevice');
+    $this->get('/auth/add','App\Controllers\Auth\AuthController:getAddDevice')->setName('auth.add');
+    $this->post('/auth/add','App\Controllers\Auth\AuthController:postAddDevice');
 
     //SIGN OUT
     $this->get('/auth/signout','App\Controllers\Auth\AuthController:getSignOut')->setName('auth.signout');

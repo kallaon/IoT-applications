@@ -10,11 +10,11 @@ class CsrfViewMiddleware extends Middleware
     {
 
         $this->container->view->getEnvironment()->addGlobal('csrf', [
-           'field' => '
+            'field' => '
            <input type="hidden" name="' . $this->container->csrf->getTokenNameKey() . '" value="' . $this->container->csrf->getTokenName() . '"> 
            <input type="hidden" name="' . $this->container->csrf->getTokenValueKey() . '" value="' . $this->container->csrf->getTokenValue() . '">
                 ',
-             ]);
+        ]);
 
         $response = $next($request, $response);
         return $response;
