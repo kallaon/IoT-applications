@@ -1,26 +1,28 @@
 <?php
 
+use Slim\Gu;
+use App\Middleware\CsrfViewMiddleware;
+use Illuminate\Contracts\Auth\Guard;
+use Slim\Csrf\Guard;
 
-use Respect\Validation\Validator as v;
 /**
  * Class to handle all db operations
  * This class will have CRUD methods for database tables
  *
  * @author Ravi Tamada
- * @link URL Tutorial link
  */
 class DbHandler {
+
+
 
     private $conn;
 
     function __construct() {
-        require_once dirname(__FILE__) . '/DbConnect.php';
+        require_once dirname(__FILE__) . './DbConnect.php';
         // opening db connection
         $db = new DbConnect();
         $this->conn = $db->connect();
     }
-
-
 
     /* ------------- `users` table method ------------------ */
 
@@ -30,13 +32,11 @@ class DbHandler {
      * @param String $email User login email id
      * @param String $password User login password
      */
-
-
-    // nemalo by tu byť
-
-  /*  public function createUser($name, $email, $password) {
+    public function createUser($name, $email, $password) {
         require_once 'PassHash.php';
         $response = array();
+
+        
 
         // First check if user already existed in db
         if (!$this->isUserExists($email)) {
@@ -47,7 +47,7 @@ class DbHandler {
             $api_key = $this->generateApiKey();
 
             // insert query
-            $stmt = $this->conn->prepare("INSERT INTO user(name, email, password_hash, api_key, created_at, updated_at) values(?, ?, ?, ?, 1)");
+            $stmt = $this->conn->prepare("INSERT INTO users(name, email, password_hash, api_key, status) values(?, ?, ?, ?, 1)");
             $stmt->bind_param("ssss", $name, $email, $password_hash, $api_key);
 
             $result = $stmt->execute();
@@ -69,8 +69,6 @@ class DbHandler {
 
         return $response;
     }
-*/
-
 
     /**
      * Checking user login
@@ -80,7 +78,7 @@ class DbHandler {
      */
     public function checkLogin($email, $password) {
         // fetching user by email
-        $stmt = $this->conn->prepare("SELECT password_hash FROM user WHERE email = ?");
+        $stmt = $this->conn->prepare("SELECT password_hash FROM users WHERE email = ?");
 
         $stmt->bind_param("s", $email);
 
@@ -136,15 +134,7 @@ class DbHandler {
         $stmt = $this->conn->prepare("SELECT name, email, api_key, status, created_at FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         if ($stmt->execute()) {
-            // $user = $stmt->get_result()->fetch_assoc();
-            $stmt->bind_result($name, $email, $api_key, $status, $created_at);
-            $stmt->fetch();
-            $user = array();
-            $user["name"] = $name;
-            $user["email"] = $email;
-            $user["api_key"] = $api_key;
-            $user["status"] = $status;
-            $user["created_at"] = $created_at;
+            $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
             return $user;
         } else {
@@ -160,9 +150,7 @@ class DbHandler {
         $stmt = $this->conn->prepare("SELECT api_key FROM users WHERE id = ?");
         $stmt->bind_param("i", $user_id);
         if ($stmt->execute()) {
-            // $api_key = $stmt->get_result()->fetch_assoc();
-            // TODO
-            $stmt->bind_result($api_key);
+            $api_key = $stmt->get_result()->fetch_assoc();
             $stmt->close();
             return $api_key;
         } else {
@@ -178,10 +166,7 @@ class DbHandler {
         $stmt = $this->conn->prepare("SELECT id FROM users WHERE api_key = ?");
         $stmt->bind_param("s", $api_key);
         if ($stmt->execute()) {
-            $stmt->bind_result($user_id);
-            $stmt->fetch();
-            // TODO
-            // $user_id = $stmt->get_result()->fetch_assoc();
+            $user_id = $stmt->get_result()->fetch_assoc();
             $stmt->close();
             return $user_id;
         } else {
@@ -247,23 +232,13 @@ class DbHandler {
      * Fetching single task
      * @param String $task_id id of the task
      */
-
-    //UPDATE `device` SET `device_name` = 'flow1' WHERE `device`.`id_device` = 4;
     public function getTask($task_id, $user_id) {
         $stmt = $this->conn->prepare("SELECT t.id, t.task, t.status, t.created_at from tasks t, user_tasks ut WHERE t.id = ? AND ut.task_id = t.id AND ut.user_id = ?");
         $stmt->bind_param("ii", $task_id, $user_id);
         if ($stmt->execute()) {
-            $res = array();
-            $stmt->bind_result($id, $task, $status, $created_at);
-            // TODO
-            // $task = $stmt->get_result()->fetch_assoc();
-            $stmt->fetch();
-            $res["id"] = $id;
-            $res["task"] = $task;
-            $res["status"] = $status;
-            $res["created_at"] = $created_at;
+            $task = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            return $res;
+            return $task;
         } else {
             return NULL;
         }
@@ -274,7 +249,6 @@ class DbHandler {
      * @param String $user_id id of the user
      */
     public function getAllUserTasks($user_id) {
-
         $stmt = $this->conn->prepare("SELECT t.* FROM tasks t, user_tasks ut WHERE t.id = ut.task_id AND ut.user_id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
@@ -289,7 +263,6 @@ class DbHandler {
      * @param String $task task text
      * @param String $status task status
      */
-    //UPDATE `device` SET `device_name` = 'flow1' WHERE `device`.`id_device` = 4;
     public function updateTask($user_id, $task_id, $task, $status) {
         $stmt = $this->conn->prepare("UPDATE tasks t, user_tasks ut set t.task = ?, t.status = ? WHERE t.id = ? AND t.id = ut.task_id AND ut.user_id = ?");
         $stmt->bind_param("siii", $task, $status, $task_id, $user_id);
@@ -323,10 +296,6 @@ class DbHandler {
         $stmt = $this->conn->prepare("INSERT INTO user_tasks(user_id, task_id) values(?, ?)");
         $stmt->bind_param("ii", $user_id, $task_id);
         $result = $stmt->execute();
-
-        if (false === $result) {
-            die('execute() failed: ' . htmlspecialchars($stmt->error));
-        }
         $stmt->close();
         return $result;
     }
