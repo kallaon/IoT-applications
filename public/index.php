@@ -1,6 +1,6 @@
 <?php
-
-require __DIR__ . '/../bootstrap/app.php';
+require '../app/start.php';
 
 $app->run();
+
 

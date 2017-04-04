@@ -1,33 +1,32 @@
 [
     {
-        "name": "psr/container",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
+        "name": "slim/slim",
+        "version": "2.6.3",
+        "version_normalized": "2.6.3.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/php-fig/container.git",
-            "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
+            "url": "https://github.com/slimphp/Slim.git",
+            "reference": "9224ed81ac1c412881e8d762755e3d76ebf580c0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-            "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+            "url": "https://api.github.com/repos/slimphp/Slim/zipball/9224ed81ac1c412881e8d762755e3d76ebf580c0",
+            "reference": "9224ed81ac1c412881e8d762755e3d76ebf580c0",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2017-02-14T16:28:37+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
+        "suggest": {
+            "ext-mcrypt": "Required for HTTP cookie encryption",
+            "phpseclib/mcrypt_compat": "Polyfil for mcrypt extension"
         },
+        "time": "2017-01-07T12:21:41+00:00",
+        "type": "library",
         "installation-source": "dist",
         "autoload": {
-            "psr-4": {
-                "Psr\\Container\\": "src/"
+            "psr-0": {
+                "Slim": "."
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -36,81 +35,159 @@
         ],
         "authors": [
             {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
+                "name": "Josh Lockhart",
+                "email": "info@joshlockhart.com",
+                "homepage": "http://www.joshlockhart.com/"
             }
         ],
-        "description": "Common Container Interface (PHP FIG PSR-11)",
-        "homepage": "https://github.com/php-fig/container",
+        "description": "Slim Framework, a PHP micro framework",
+        "homepage": "http://github.com/codeguy/Slim",
         "keywords": [
-            "PSR-11",
-            "container",
-            "container-interface",
-            "container-interop",
-            "psr"
+            "microframework",
+            "rest",
+            "router"
         ]
     },
     {
-        "name": "container-interop/container-interop",
-        "version": "1.2.0",
-        "version_normalized": "1.2.0.0",
+        "name": "ircmaxell/security-lib",
+        "version": "v1.1.0",
+        "version_normalized": "1.1.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/container-interop/container-interop.git",
-            "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8"
+            "url": "https://github.com/ircmaxell/SecurityLib.git",
+            "reference": "f3db6de12c20c9bcd1aa3db4353a1bbe0e44e1b5"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/container-interop/container-interop/zipball/79cbf1341c22ec75643d841642dd5d6acd83bdb8",
-            "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8",
+            "url": "https://api.github.com/repos/ircmaxell/SecurityLib/zipball/f3db6de12c20c9bcd1aa3db4353a1bbe0e44e1b5",
+            "reference": "f3db6de12c20c9bcd1aa3db4353a1bbe0e44e1b5",
             "shasum": ""
         },
         "require": {
-            "psr/container": "^1.0"
+            "php": ">=5.3.2"
         },
-        "time": "2017-02-14T19:40:03+00:00",
+        "require-dev": {
+            "mikey179/vfsstream": "1.1.*"
+        },
+        "time": "2015-03-20T14:31:23+00:00",
         "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
-            "psr-4": {
-                "Interop\\Container\\": "src/Interop/Container/"
+            "psr-0": {
+                "SecurityLib": "lib"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
             "MIT"
         ],
-        "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-        "homepage": "https://github.com/container-interop/container-interop"
+        "authors": [
+            {
+                "name": "Anthony Ferrara",
+                "email": "ircmaxell@ircmaxell.com",
+                "homepage": "http://blog.ircmaxell.com"
+            }
+        ],
+        "description": "A Base Security Library",
+        "homepage": "https://github.com/ircmaxell/SecurityLib"
     },
     {
-        "name": "nikic/fast-route",
+        "name": "ircmaxell/random-lib",
         "version": "v1.2.0",
         "version_normalized": "1.2.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/nikic/FastRoute.git",
-            "reference": "b5f95749071c82a8e0f58586987627054400cdf6"
+            "url": "https://github.com/ircmaxell/RandomLib.git",
+            "reference": "e9e0204f40e49fa4419946c677eccd3fa25b8cf4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nikic/FastRoute/zipball/b5f95749071c82a8e0f58586987627054400cdf6",
-            "reference": "b5f95749071c82a8e0f58586987627054400cdf6",
+            "url": "https://api.github.com/repos/ircmaxell/RandomLib/zipball/e9e0204f40e49fa4419946c677eccd3fa25b8cf4",
+            "reference": "e9e0204f40e49fa4419946c677eccd3fa25b8cf4",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.4.0"
+            "ircmaxell/security-lib": "^1.1",
+            "php": ">=5.3.2"
         },
-        "time": "2017-01-19T11:35:12+00:00",
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "^1.11",
+            "mikey179/vfsstream": "^1.6",
+            "phpunit/phpunit": "^4.8|^5.0"
+        },
+        "time": "2016-09-07T15:52:06+00:00",
         "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.1.x-dev"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
-            "psr-4": {
-                "FastRoute\\": "src/"
-            },
-            "files": [
-                "src/functions.php"
-            ]
+            "psr-0": {
+                "RandomLib": "lib"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Anthony Ferrara",
+                "email": "ircmaxell@ircmaxell.com",
+                "homepage": "http://blog.ircmaxell.com"
+            }
+        ],
+        "description": "A Library For Generating Secure Random Numbers",
+        "homepage": "https://github.com/ircmaxell/RandomLib",
+        "keywords": [
+            "cryptography",
+            "random",
+            "random-numbers",
+            "random-strings"
+        ]
+    },
+    {
+        "name": "twig/twig",
+        "version": "v1.33.0",
+        "version_normalized": "1.33.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twigphp/Twig.git",
+            "reference": "05cf49921b13f6f01d3cfdf9018cfa7a8086fd5a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twigphp/Twig/zipball/05cf49921b13f6f01d3cfdf9018cfa7a8086fd5a",
+            "reference": "05cf49921b13f6f01d3cfdf9018cfa7a8086fd5a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.7"
+        },
+        "require-dev": {
+            "psr/container": "^1.0",
+            "symfony/debug": "~2.7",
+            "symfony/phpunit-bridge": "~3.3@dev"
+        },
+        "time": "2017-03-22T15:40:09+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.33-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Twig_": "lib/"
+            }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -118,151 +195,56 @@
         ],
         "authors": [
             {
-                "name": "Nikita Popov",
-                "email": "nikic@php.net"
-            }
-        ],
-        "description": "Fast request router for PHP",
-        "keywords": [
-            "router",
-            "routing"
-        ]
-    },
-    {
-        "name": "psr/http-message",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/http-message.git",
-            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
-            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2016-08-06T14:39:51+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Psr\\Http\\Message\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common interface for HTTP messages",
-        "homepage": "https://github.com/php-fig/http-message",
-        "keywords": [
-            "http",
-            "http-message",
-            "psr",
-            "psr-7",
-            "request",
-            "response"
-        ]
-    },
-    {
-        "name": "pimple/pimple",
-        "version": "v3.0.2",
-        "version_normalized": "3.0.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/silexphp/Pimple.git",
-            "reference": "a30f7d6e57565a2e1a316e1baf2a483f788b258a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/silexphp/Pimple/zipball/a30f7d6e57565a2e1a316e1baf2a483f788b258a",
-            "reference": "a30f7d6e57565a2e1a316e1baf2a483f788b258a",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2015-09-11T15:10:35+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Pimple": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
                 "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
+                "email": "fabien@symfony.com",
+                "homepage": "http://fabien.potencier.org",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Armin Ronacher",
+                "email": "armin.ronacher@active-4.com",
+                "role": "Project Founder"
+            },
+            {
+                "name": "Twig Team",
+                "homepage": "http://twig.sensiolabs.org/contributors",
+                "role": "Contributors"
             }
         ],
-        "description": "Pimple, a simple Dependency Injection Container",
-        "homepage": "http://pimple.sensiolabs.org",
+        "description": "Twig, the flexible, fast, and secure template language for PHP",
+        "homepage": "http://twig.sensiolabs.org",
         "keywords": [
-            "container",
-            "dependency injection"
+            "templating"
         ]
     },
     {
-        "name": "slim/slim",
-        "version": "3.7.0",
-        "version_normalized": "3.7.0.0",
+        "name": "alexgarrett/violin",
+        "version": "2.2.2",
+        "version_normalized": "2.2.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/slimphp/Slim.git",
-            "reference": "4254e40d81559e35cdf856bcbaca5f3af468b7ef"
+            "url": "https://github.com/alexgarrett/violin.git",
+            "reference": "92d0ee5d0e7cc1703fe937772c313721fdb86cdc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/slimphp/Slim/zipball/4254e40d81559e35cdf856bcbaca5f3af468b7ef",
-            "reference": "4254e40d81559e35cdf856bcbaca5f3af468b7ef",
+            "url": "https://api.github.com/repos/alexgarrett/violin/zipball/92d0ee5d0e7cc1703fe937772c313721fdb86cdc",
+            "reference": "92d0ee5d0e7cc1703fe937772c313721fdb86cdc",
             "shasum": ""
         },
         "require": {
-            "container-interop/container-interop": "^1.1",
-            "nikic/fast-route": "^1.0",
-            "php": ">=5.5.0",
-            "pimple/pimple": "^3.0",
-            "psr/http-message": "^1.0"
-        },
-        "provide": {
-            "psr/http-message-implementation": "1.0"
+            "php": ">=5.4"
         },
         "require-dev": {
-            "phpunit/phpunit": "^4.0",
-            "squizlabs/php_codesniffer": "^2.5"
+            "phpunit/phpunit": "~4.5",
+            "squizlabs/php_codesniffer": "2.1.*"
         },
-        "time": "2016-12-20T20:30:47+00:00",
+        "time": "2015-04-11T22:58:34+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Slim\\": "Slim"
+                "Violin\\": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -271,33 +253,15 @@
         ],
         "authors": [
             {
-                "name": "Rob Allen",
-                "email": "rob@akrabat.com",
-                "homepage": "http://akrabat.com"
-            },
-            {
-                "name": "Josh Lockhart",
-                "email": "hello@joshlockhart.com",
-                "homepage": "https://joshlockhart.com"
-            },
-            {
-                "name": "Gabriel Manricks",
-                "email": "gmanricks@me.com",
-                "homepage": "http://gabrielmanricks.com"
-            },
-            {
-                "name": "Andrew Smith",
-                "email": "a.smith@silentworks.co.uk",
-                "homepage": "http://silentworks.co.uk"
+                "name": "Alex Garrett",
+                "email": "alex@codecourse.com",
+                "homepage": "http://itsmealex.com"
             }
         ],
-        "description": "Slim is a PHP micro framework that helps you quickly write simple yet powerful web applications and APIs",
-        "homepage": "https://slimframework.com",
+        "description": "Violin is an easy to use, highly customisable PHP validator.",
+        "homepage": "https://github.com/alexgarrett/violin",
         "keywords": [
-            "api",
-            "framework",
-            "micro",
-            "router"
+            "validation"
         ]
     },
     {
@@ -359,123 +323,6 @@
             "polyfill",
             "portable",
             "shim"
-        ]
-    },
-    {
-        "name": "twig/twig",
-        "version": "v2.2.0",
-        "version_normalized": "2.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/twigphp/Twig.git",
-            "reference": "29bb02dde09ff56291d30f7687eb8696918023af"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/twigphp/Twig/zipball/29bb02dde09ff56291d30f7687eb8696918023af",
-            "reference": "29bb02dde09ff56291d30f7687eb8696918023af",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^7.0",
-            "symfony/polyfill-mbstring": "~1.0"
-        },
-        "require-dev": {
-            "psr/container": "^1.0",
-            "symfony/debug": "~2.7",
-            "symfony/phpunit-bridge": "~3.2"
-        },
-        "time": "2017-02-27T00:16:20+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Twig_": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com",
-                "homepage": "http://fabien.potencier.org",
-                "role": "Lead Developer"
-            },
-            {
-                "name": "Armin Ronacher",
-                "email": "armin.ronacher@active-4.com",
-                "role": "Project Founder"
-            },
-            {
-                "name": "Twig Team",
-                "homepage": "http://twig.sensiolabs.org/contributors",
-                "role": "Contributors"
-            }
-        ],
-        "description": "Twig, the flexible, fast, and secure template language for PHP",
-        "homepage": "http://twig.sensiolabs.org",
-        "keywords": [
-            "templating"
-        ]
-    },
-    {
-        "name": "slim/twig-view",
-        "version": "2.2.0",
-        "version_normalized": "2.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/slimphp/Twig-View.git",
-            "reference": "a743ac45e2a089942159dda499c5ef5bc5f6bfa6"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/slimphp/Twig-View/zipball/a743ac45e2a089942159dda499c5ef5bc5f6bfa6",
-            "reference": "a743ac45e2a089942159dda499c5ef5bc5f6bfa6",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.0",
-            "psr/http-message": "^1.0",
-            "twig/twig": "^1.18|^2.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^4.8|^5.7"
-        },
-        "time": "2017-01-25T20:38:39+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Slim\\Views\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Josh Lockhart",
-                "email": "hello@joshlockhart.com",
-                "homepage": "http://joshlockhart.com"
-            }
-        ],
-        "description": "Slim Framework 3 view helper built on top of the Twig 2 templating component",
-        "homepage": "http://slimframework.com",
-        "keywords": [
-            "framework",
-            "slim",
-            "template",
-            "twig",
-            "view"
         ]
     },
     {
@@ -601,17 +448,17 @@
     },
     {
         "name": "paragonie/random_compat",
-        "version": "v2.0.9",
-        "version_normalized": "2.0.9.0",
+        "version": "v2.0.10",
+        "version_normalized": "2.0.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/paragonie/random_compat.git",
-            "reference": "6968531206671f94377b01dc7888d5d1b858a01b"
+            "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/6968531206671f94377b01dc7888d5d1b858a01b",
-            "reference": "6968531206671f94377b01dc7888d5d1b858a01b",
+            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/634bae8e911eefa89c1abfbf1b66da679ac8f54d",
+            "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d",
             "shasum": ""
         },
         "require": {
@@ -623,7 +470,7 @@
         "suggest": {
             "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
         },
-        "time": "2017-03-03T20:43:42+00:00",
+        "time": "2017-03-13T16:27:32+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -929,102 +776,171 @@
         ]
     },
     {
-        "name": "respect/validation",
-        "version": "1.1.11",
-        "version_normalized": "1.1.11.0",
+        "name": "hassankhan/config",
+        "version": "0.10.0",
+        "version_normalized": "0.10.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/Respect/Validation.git",
-            "reference": "03f4abbd08149fb1b803a6a7d767dd3f925ce1d1"
+            "url": "https://github.com/hassankhan/config.git",
+            "reference": "06ac500348af033f1a2e44dc357ca86282626d4a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Respect/Validation/zipball/03f4abbd08149fb1b803a6a7d767dd3f925ce1d1",
-            "reference": "03f4abbd08149fb1b803a6a7d767dd3f925ce1d1",
+            "url": "https://api.github.com/repos/hassankhan/config/zipball/06ac500348af033f1a2e44dc357ca86282626d4a",
+            "reference": "06ac500348af033f1a2e44dc357ca86282626d4a",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.4",
-            "symfony/polyfill-mbstring": "^1.2"
+            "php": ">=5.3.0"
         },
         "require-dev": {
-            "egulias/email-validator": "~1.2",
-            "malkusch/bav": "~1.0",
-            "mikey179/vfsstream": "^1.5",
             "phpunit/phpunit": "~4.0",
-            "symfony/validator": "~2.6.9",
-            "zendframework/zend-validator": "~2.3"
+            "scrutinizer/ocular": "~1.1",
+            "squizlabs/php_codesniffer": "~2.2"
         },
         "suggest": {
-            "egulias/email-validator": "Strict (RFC compliant) email validation",
-            "ext-bcmath": "Arbitrary Precision Mathematics",
-            "ext-mbstring": "Multibyte String Functions",
-            "fabpot/php-cs-fixer": "Fix PSR2 and other coding style issues",
-            "malkusch/bav": "German bank account validation",
-            "symfony/validator": "Use Symfony validator through Respect\\Validation",
-            "zendframework/zend-validator": "Use Zend Framework validator through Respect\\Validation"
+            "symfony/yaml": "~2.5"
         },
-        "time": "2017-01-26T14:39:48+00:00",
+        "time": "2016-02-11T16:21:17+00:00",
         "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.1-dev"
-            }
-        },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Respect\\Validation\\": "library/"
+                "Noodlehaus\\": "src"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD Style"
+            "MIT"
         ],
         "authors": [
             {
-                "name": "Respect/Validation Contributors",
-                "homepage": "https://github.com/Respect/Validation/graphs/contributors"
+                "name": "Hassan Khan",
+                "homepage": "http://hassankhan.me/",
+                "role": "Developer"
             }
         ],
-        "description": "The most awesome validation engine ever created for PHP",
-        "homepage": "http://respect.github.io/Validation/",
+        "description": "Lightweight configuration file loader that supports PHP, INI, XML, JSON, and YAML files",
+        "homepage": "http://hassankhan.me/config/",
         "keywords": [
-            "respect",
-            "validation",
-            "validator"
+            "config",
+            "configuration",
+            "ini",
+            "json",
+            "microphp",
+            "unframework",
+            "xml",
+            "yaml",
+            "yml"
         ]
     },
     {
-        "name": "slim/csrf",
-        "version": "0.8.1",
-        "version_normalized": "0.8.1.0",
+        "name": "phpmailer/phpmailer",
+        "version": "v5.2.23",
+        "version_normalized": "5.2.23.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/slimphp/Slim-Csrf.git",
-            "reference": "96f2019d2626d71985dc0ca41948f49c3454f4d1"
+            "url": "https://github.com/PHPMailer/PHPMailer.git",
+            "reference": "7115df4a6f76281109ebe352900c42403b728bb4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/slimphp/Slim-Csrf/zipball/96f2019d2626d71985dc0ca41948f49c3454f4d1",
-            "reference": "96f2019d2626d71985dc0ca41948f49c3454f4d1",
+            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/7115df4a6f76281109ebe352900c42403b728bb4",
+            "reference": "7115df4a6f76281109ebe352900c42403b728bb4",
             "shasum": ""
         },
         "require": {
-            "paragonie/random_compat": "^1.1|^2.0",
-            "php": ">=5.5.0",
-            "psr/http-message": "^1.0"
+            "php": ">=5.0.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "^4.0",
-            "slim/slim": "~3.0"
+            "doctrine/annotations": "1.2.*",
+            "jms/serializer": "0.16.*",
+            "phpdocumentor/phpdocumentor": "2.*",
+            "phpunit/phpunit": "4.8.*",
+            "symfony/debug": "2.8.*",
+            "symfony/filesystem": "2.8.*",
+            "symfony/translation": "2.8.*",
+            "symfony/yaml": "2.8.*",
+            "zendframework/zend-cache": "2.5.1",
+            "zendframework/zend-config": "2.5.1",
+            "zendframework/zend-eventmanager": "2.5.1",
+            "zendframework/zend-filter": "2.5.1",
+            "zendframework/zend-i18n": "2.5.1",
+            "zendframework/zend-json": "2.5.1",
+            "zendframework/zend-math": "2.5.1",
+            "zendframework/zend-serializer": "2.5.*",
+            "zendframework/zend-servicemanager": "2.5.*",
+            "zendframework/zend-stdlib": "2.5.1"
         },
-        "time": "2016-12-20T20:45:43+00:00",
+        "suggest": {
+            "league/oauth2-google": "Needed for Google XOAUTH2 authentication"
+        },
+        "time": "2017-03-15T19:32:56+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "class.phpmailer.php",
+                "class.phpmaileroauth.php",
+                "class.phpmaileroauthgoogle.php",
+                "class.smtp.php",
+                "class.pop3.php",
+                "extras/EasyPeasyICS.php",
+                "extras/ntlm_sasl_client.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1"
+        ],
+        "authors": [
+            {
+                "name": "Jim Jagielski",
+                "email": "jimjag@gmail.com"
+            },
+            {
+                "name": "Marcus Bointon",
+                "email": "phpmailer@synchromedia.co.uk"
+            },
+            {
+                "name": "Andy Prevost",
+                "email": "codeworxtech@users.sourceforge.net"
+            },
+            {
+                "name": "Brent R. Matzelle"
+            }
+        ],
+        "description": "PHPMailer is a full-featured email creation and transfer class for PHP"
+    },
+    {
+        "name": "slim/views",
+        "version": "0.1.3",
+        "version_normalized": "0.1.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/slimphp/Slim-Views.git",
+            "reference": "8561c785e55a39df6cb6f95c3aba3281a60ed5b0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/slimphp/Slim-Views/zipball/8561c785e55a39df6cb6f95c3aba3281a60ed5b0",
+            "reference": "8561c785e55a39df6cb6f95c3aba3281a60ed5b0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "slim/slim": ">=2.4.0"
+        },
+        "suggest": {
+            "smarty/smarty": "Smarty templating system",
+            "twig/twig": "Twig templating system"
+        },
+        "time": "2014-12-09T23:48:51+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Slim\\Csrf\\": "src"
+                "Slim\\Views\\": "./"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -1034,67 +950,21 @@
         "authors": [
             {
                 "name": "Josh Lockhart",
-                "email": "hello@joshlockhart.com",
-                "homepage": "http://joshlockhart.com"
-            }
-        ],
-        "description": "Slim Framework 3 CSRF protection middleware",
-        "homepage": "http://slimframework.com",
-        "keywords": [
-            "csrf",
-            "framework",
-            "middleware",
-            "slim"
-        ]
-    },
-    {
-        "name": "slim/flash",
-        "version": "0.2.0",
-        "version_normalized": "0.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/slimphp/Slim-Flash.git",
-            "reference": "3c9a26b3163820acc48080336c504d0a3cac6f30"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/slimphp/Slim-Flash/zipball/3c9a26b3163820acc48080336c504d0a3cac6f30",
-            "reference": "3c9a26b3163820acc48080336c504d0a3cac6f30",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^4.0"
-        },
-        "time": "2016-11-11T16:29:19+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Slim\\Flash\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
+                "email": "info@joshlockhart.com",
+                "homepage": "http://www.joshlockhart.com/"
+            },
             {
-                "name": "Josh Lockhart",
-                "email": "hello@joshlockhart.com",
-                "homepage": "http://joshlockhart.com"
+                "name": "Andrew Smith",
+                "email": "a.smith@silentworks.co.uk",
+                "homepage": "http://thoughts.silentworks.co.uk/"
             }
         ],
-        "description": "Slim Framework Flash message service provider",
-        "homepage": "http://slimframework.com",
+        "description": "Smarty and Twig View Parser package for the Slim Framework",
+        "homepage": "http://github.com/codeguy/Slim-Views",
         "keywords": [
-            "flash",
-            "framework",
-            "message",
-            "provider",
-            "slim"
+            "extensions",
+            "slimphp",
+            "templating"
         ]
     }
 ]
