@@ -3,12 +3,12 @@
 {% block tittle %}IoT | User devices {% endblock %}
 
 {% block content %}
-
+<title>Title</title>
 <div class="row">
     <div class="col-lg-12">
         <div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <i class="fa fa-info-circle"></i>  <strong>{{ auth.name }}</strong> - your devices
+            <i class="fa fa-info-circle"></i>  <strong>{{ auth.name }}</strong> - your devices {{ id_dev }}
 
         </div>
     </div>

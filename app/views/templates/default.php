@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% block title %}{% endblock %}</title>
+    <title></title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
@@ -146,8 +146,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        Natpišťek
-                        <small>Podnatpišťek</small>
+                        {% block title %}{% endblock %}
+                        <small>Subheading</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li>
