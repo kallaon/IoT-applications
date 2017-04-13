@@ -1,3 +1,6 @@
 {% if flash.global %}
-    <div class="global">{{ flash.global }}</div>
+
+<div class="alert alert-info">
+    <strong>Info!</strong> {{ flash.global }}
+</div>
 {% endif %}
