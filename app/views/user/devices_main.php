@@ -20,7 +20,6 @@
                         <th>Type</th>
                         <th>Created at</th>
                         <th>Updated at</th>
-                        <th>Active</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -33,9 +32,8 @@
                         <td>{{ dev.id_type }}</td>
                         <td>{{ dev.created_at }}</td>
                         <td>{{ dev.updated_at }}</td>
-                        <td>1</td>
-                        <td><a href="#"><span class="glyphicon glyphicon-wrench"></span></a></td>
-                        <td><a href="#"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        <td><a href="{{ urlFor('edit', { dev_name: dev.device_name } ) }}"><span class="glyphicon glyphicon-wrench"></span></a></td>
+                        <td><a href="/external/del_device.php?id={{ dev.id_device }}"><span class="glyphicon glyphicon-remove"></span></a></td>
                     </tr>
                     {% endfor %}
                     </tbody>
