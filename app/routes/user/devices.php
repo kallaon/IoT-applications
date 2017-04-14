@@ -6,6 +6,10 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
 
     if($id == ":id"){
         $device = Capsule::select('SELECT * FROM device WHERE user_id = "'.$session.'"');
+        $min = Capsule::select('SELECT MIN(device_val) FROM device_value WHERE id_device = "'.$id.'"');
+        $test = Capsule::select('SELECT max(device_value.device_val) FROM device_value JOIN device ON device_value.id_device = device.id_device WHERE device_value.id_device ="'.$id.'" ');
+        var_dump($min);
+        //echo $min;
        // nacita typy
         //var_dump($device);
         $types = Capsule::table('type')->get();
@@ -15,11 +19,17 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
             'session' => $session,
             'device' => $device,
             'types' => $types,
+            'min' => $min,
         ]);
     }else{
-        $app->render('user/devices.php', [
-            'id_dev' => $id
-        ]);
+
+         $app->render('user/devices.php',
+            [
+                'id_dev' => $id
+
+            ]);
+
+
     }
 
 
