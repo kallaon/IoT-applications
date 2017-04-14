@@ -43,6 +43,8 @@
     </div>
 </div>
 
+
+    TEST: {{ min[0].device_value.device_val }}
 <!--  ADD device panel  -->
 
 <div class="container">

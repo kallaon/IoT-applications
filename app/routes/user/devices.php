@@ -6,12 +6,11 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
 
     if($id == ":id"){
         $device = Capsule::select('SELECT * FROM device WHERE user_id = "'.$session.'"');
-        $min = Capsule::select('SELECT MIN(device_val) FROM device_value WHERE id_device = "'.$id.'"');
-        $test = Capsule::select('SELECT max(device_value.device_val) FROM device_value JOIN device ON device_value.id_device = device.id_device WHERE device_value.id_device ="'.$id.'" ');
-        var_dump($min);
-        //echo $min;
-       // nacita typy
-        //var_dump($device);
+        //$min = Capsule::select('SELECT MIN(device_val) FROM device_value WHERE id_device = "'.$id.'"');
+       // $min = Capsule::select('SELECT MIN(device_val) FROM device_value');
+        //$test = Capsule::select('SELECT max(device_value.device_val) FROM device_value JOIN device ON device_value.id_device = device.id_device WHERE device_value.id_device =11 ');
+       // var_dump($test);
+
         $types = Capsule::table('type')->get();
 
         $app->render('user/devices_main.php', [
@@ -19,13 +18,19 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
             'session' => $session,
             'device' => $device,
             'types' => $types,
-            'min' => $min,
         ]);
     }else{
+        $min = Capsule::table('device_value')->where('id_device','=',$id)->min('device_val');
+        $max = Capsule::table('device_value')->where('id_device','=',$id)->max('device_val');
+        $avg = round(Capsule::table('device_value')->where('id_device','=',$id)->avg('device_val'),2);
+
 
          $app->render('user/devices.php',
             [
-                'id_dev' => $id
+                'id_dev' => $id,
+                'min' => $min,
+                'max' => $max,
+                'avg' => $avg,
 
             ]);
 
