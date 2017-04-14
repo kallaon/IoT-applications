@@ -95,19 +95,24 @@
                     </ul>
                 </div>
             </div>
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li>
-                    <a href="{{ urlFor('devices') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="{{ urlFor('devices') }}"><i class="fa fa-fw fa-bar-chart-o"></i>Devices</a>
-                </li>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                {% if auth %}
+                <ul class="nav navbar-nav side-nav">
+
+                    <li>
+                        <a href="{{ urlFor('devices') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{{ urlFor('devices') }}"><i class="fa fa-fw fa-bar-chart-o"></i>Devices</a>
+                    </li>
+
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- /.navbar-collapse -->
     </nav>
 
     <div id="page-wrapper">
