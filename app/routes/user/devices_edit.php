@@ -25,6 +25,7 @@ $app->post('/devices_edit',$authenticated(), function () use ($app)
     $request = $app->request;
 
     $name = $request->post('name');
+    $dev_name = $request->post('dev_name');
     $type = $request->post('menu-type');
 
     $v = $app->validation;
@@ -35,7 +36,7 @@ $app->post('/devices_edit',$authenticated(), function () use ($app)
 
     if ($v->passes()) {
 
-        Capsule::select('UPDATE device SET device_name = "'.$name.'" WHERE device.id_device = 18');
+        Capsule::select('UPDATE device SET device_name = "'.$name.'",  WHERE device_name = "'.$dev_name.'" AND ');
 
         $app->flash('global', 'Device has been updated!');
         return $app->response->redirect($app->urlFor('devices'));

@@ -17,6 +17,7 @@
                                     <label for="name">Device name</label>
                                     <input class="form-control" placeholder="{{ dev[0].device_name }}" name="name" type="text" id="name"  autofocus>
                                 </div>
+                                <input type="hidden" name="dev_name" value="{{ dev[0].device_name }}" id="dev_name">
                                 <div class="form-group">
                                     <label for="type">Type</label>
                                     <div class="form-group">

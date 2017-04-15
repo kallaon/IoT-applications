@@ -40,11 +40,7 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
 
 })->name('devices');
 
-//DELETE FROM `device` WHERE `device`.`id_device` = 16
-function deleteDevice($id_dev)
-{
-    Capsule::table('device')->where('id_device','=',$id_dev)->delete();
-}
+
 
 $app->post('/devices',$authenticated(), function () use ($app)
 {
