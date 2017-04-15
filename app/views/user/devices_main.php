@@ -71,7 +71,7 @@
 
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-lg btn-info btn-block">ADD</button>
+                                <button type="submit" class="btn btn-lg btn-info btn-block">Add</button>
                         </fieldset>
                     </form>
                 </div>
