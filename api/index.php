@@ -164,7 +164,6 @@ $app->post('/value', 'authenticate', function() use ($app) {
     verifyRequiredParams(array('value','id_device'));
 
     $response = array();
-    //$api_key = $app->request->post('api_key');
     $id_device = $app->request->post('id_device');
     $value = $app->request->post('value');
 
@@ -177,13 +176,16 @@ $app->post('/value', 'authenticate', function() use ($app) {
     if ($task_id != NULL) {
         $response["error"] = false;
         $response["message"] = "Record created successfully";
-        $response["task_id"] = $task_id;
+        //$response["task_id"] = $task_id;
     } else {
         $response["error"] = true;
         $response["message"] = "Failed to create record. Please try again";
     }
     echoRespnse(201, $response);
 });
+
+
+
 
 
 /**
@@ -222,6 +224,32 @@ $app->post('/test', function() use ($app) {
         $response["message"] = "Sorry, this email already existed or username is already taken";
         echoRespnse(200, $response);
     }
+});
+//vrati vsetky hodnoty zariadenia
+
+$app->get('/value', 'authenticate', function() {
+
+    //global $user_id;
+    $device_id = 19;
+    $response = array();
+    $db = new DbHandler();
+
+    // fetching all user tasks
+    $result = $db->getAllUserTasks( $device_id);
+
+    $response["error"] = false;
+    $response["tasks"] = array();
+
+    // looping through result and preparing tasks array
+    while ($task = $result->fetch_assoc()) {
+        $tmp = array();
+        $tmp["Device Value"] = $task["device_val"];
+        $tmp["Created at"] = $task["created_at"];
+        $tmp["Updated at"] = $task["updated_at"];
+        array_push($response["tasks"], $tmp);
+    }
+
+    echoRespnse(200, $response);
 });
 
 $app->run();

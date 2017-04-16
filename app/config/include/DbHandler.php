@@ -214,23 +214,21 @@ class DbHandler {
         //$result = $stmt->execute();
         $stmt->execute();
         $stmt->close();
-/*
-        if ($result) {
-            // task row created
-            // now assign the task to user
-            $new_task_id = $this->conn->insert_id;
-            $res = $this->createUserTask($user_id, $new_task_id);
-            if ($res) {
-                // task created successfully
-                return $new_task_id;
-            } else {
-                // task failed to create
-                return NULL;
-            }
-        } else {
-            // task failed to create
-            return NULL;
-        }*/
+        /*
+                if ($result) {
+                    $res = "laaaus";
+                    if ($res) {
+                        return $res;
+
+                    } else {
+                        // task failed to create
+                        return NULL;
+                    }
+                } else {
+                    // task failed to create
+                    return NULL;
+                }
+        */
     }
 
     /**
@@ -252,10 +250,14 @@ class DbHandler {
     /**
      * Fetching all user tasks
      * @param String $user_id id of the user
+     *
+     * public function createRecord($id_device, $value) {
+     * $stmt = $this->conn->prepare("INSERT INTO device_value ( id_device, created_at,updated_at, device_val) VALUES (?, now(), now(), ?)");
+     * $stmt->bind_param("is", $id_device,$value );
      */
-    public function getAllUserTasks($user_id) {
-        $stmt = $this->conn->prepare("SELECT t.* FROM tasks t, user_tasks ut WHERE t.id = ut.task_id AND ut.user_id = ?");
-        $stmt->bind_param("i", $user_id);
+    public function getAllUserTasks($device_id) {
+        $stmt = $this->conn->prepare("SELECT * FROM device_value WHERE id_device = 19");
+        //$stmt->bind_param("i", $device_id);
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();
