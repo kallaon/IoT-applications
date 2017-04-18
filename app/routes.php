@@ -12,5 +12,3 @@ require INC_ROOT . '/app/routes/user/devices_main.php';
 require INC_ROOT . '/app/routes/user/devices_edit.php';
 require INC_ROOT . '/app/routes/user/delete.php';
 
-//require INC_ROOT . '/api/index.php';
-
