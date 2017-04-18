@@ -1,6 +1,6 @@
 <?php
 
-$app->get('/login', function () use ($app) {
+$app->get('/login',function () use ($app) {
     $app->render('auth/login.php');
 })->name('login');
 
