@@ -11,13 +11,14 @@
                         <h3 class="panel-title"><i class="glyphicon glyphicon-wrench"></i> Edit device</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="{{ urlFor('edit.post', { dev_name: dev.device_name } ) }}" method="post" autocomplete="on">
+                        <form role="form" action="{{ urlFor('edit.post', { dev_name: dev.id_device } ) }}" method="post" autocomplete="on">
                             <fieldset>
                                 <div class="form-group">
                                     <label for="name">Device name</label>
-                                    <input class="form-control" placeholder="{{ dev[0].device_name }}" name="name" type="text" id="name"  autofocus>
+                                    <input class="form-control" value="{{ dev[0].device_name }}" name="name" type="text" id="name"  autofocus>
+
                                 </div>
-                                <input type="hidden" name="dev_name" value="{{ dev[0].device_name }}" id="dev_name">
+                                <input type="hidden" name="dev_name" value="{{ dev[0].id_device }}" id="dev_name">
                                 <div class="form-group">
                                     <label for="type">Type</label>
                                     <div class="form-group">
@@ -29,7 +30,14 @@
 
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-lg btn-info btn-block">Update</button>
+                                    </div>
+                                <div class="row">
+                                    <div class="col-md-6"><a href="javascript: window.history.go(-1)" class="btn btn-lg btn-danger btn-block">Storno</a></div>
+                                    <div class="col-md-6"><button type="submit" class="btn btn-lg btn-info btn-block">Update</button></div>
+                                </div>
+
+
+
 
                             </fieldset>
                         </form>

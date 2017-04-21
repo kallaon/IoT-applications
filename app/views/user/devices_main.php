@@ -4,49 +4,49 @@
 
 {% block content %}
 <div class="row">
-<div class="col-lg-8">
+    <div class="col-lg-8">
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><i class="glyphicon glyphicon-list"></i> Device's table</h3>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-striped">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Device name</th>
-                        <th>Type</th>
-                        <th>Created at</th>
-                        <th>Updated at</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for dev in device %}
-                    <tr>
-                        <td>{{ dev.id_device }}</td>
-                        <td><a href="{{ urlFor('devices', { id: dev.id_device } ) }}">{{ dev.device_name }}</a></td>
-                        <td>{{ dev.id_type }}</td>
-                        <td>{{ dev.created_at }}</td>
-                        <td>{{ dev.updated_at }}</td>
-                        <td><a href="{{ urlFor('edit', { dev_name: dev.device_name } ) }}"><span class="glyphicon glyphicon-wrench"></span></a></td>
-                        <td><a href="{{ urlFor('delete', { id: dev.id_device } ) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-list"></i> Device's table</h3>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Device name</th>
+                            <th>Type</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for dev in device %}
+                        <tr>
+                            <td>{{ dev.id_device }}</td>
+                            <td><a href="{{ urlFor('devices', { id: dev.id_device } ) }}">{{ dev.device_name }}</a></td>
+                            <td>{{ dev.type_name }}</td>
+                            <td>{{ dev.created_at }}</td>
+                            <td>{{ dev.updated_at }}</td>
+                            <td><a href="{{ urlFor('edit', { dev_name: dev.id_device } ) }}"><span class="glyphicon glyphicon-wrench"></span></a></td>
+                            <td><a href="{{ urlFor('delete', { id: dev.id_device } ) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<!--  ADD device panel  -->
+    <!--  ADD device panel  -->
 
-<div class="container">
+    <div class="container">
 
         <div class="col-md-3">
             <div class="info-panel panel panel-default">
@@ -78,7 +78,40 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="col-md-3">
+            <div class="info-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-zoom-in"></i> Create new type</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" action="{{ urlFor('add_type.post') }}" method="post" autocomplete="on">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="name">Type name</label>
+                                <input class="form-control" placeholder="Type Name" name="type_name" type="text" id="type_name"  autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Shortcut </label>
+                                <input class="form-control" placeholder="°C, %, bar, dB" name="shrt_name" type="text" id="shrt_name"  autofocus>
+                                <span class="help-block">{% if errors.has('shrt_name') %} {{ errors.first('shrt_name') }} {% endif %}</span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-lg btn-info btn-block">Create</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+</div>
+
+
 
 
 {% endblock %}

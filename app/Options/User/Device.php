@@ -12,5 +12,6 @@ class Device extends Eloquent
         'device_name',
         'user_id',
         'id_type',
+        'unit',
     ];
 }

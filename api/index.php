@@ -1,13 +1,15 @@
 <?php
 
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 require_once '../app/config/include/DbHandler.php';
 require_once '../app/config/include/PassHash.php';
 //require '.././libs/Slim/Slim.php';
-require '../vendor/slim/slim/Slim/Slim.php';
+//require '../vendor/slim/slim/Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
 
-$app = new \Slim\Slim();
+//$app = new \Slim\Slim();
 
 // User id from db - Global Variable
 $user_id = NULL;
@@ -252,6 +254,14 @@ $app->get('/value', 'authenticate', function() {
     echoRespnse(200, $response);
 });
 
-$app->run();
+
+$app->get('/api/tt', function() use ($app) {
+
+   // $db = Capsule::table('user')->select('name')->get();
+   // $array() = Capsule::table('user')->select('name')->get();
+   // var_dump(json_encode($db));
+    echoRespnse(200, "hjello");
+});
+
 
 ?>
