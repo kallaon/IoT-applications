@@ -137,8 +137,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        {% block title %}{% endblock %}
-                        <small>Subheading</small>
+
+                        <small>{{ block('title') }}</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li>

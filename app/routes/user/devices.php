@@ -8,11 +8,6 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
         //device.active neexistuje
         //$device = Capsule::select('SELECT device.id_device,device.user_id,device.id_type,device.device_name,device.updated_at,device.created_at,device.active,device.unit,type.device_name as type_name FROM device INNER JOIN type ON device.id_type = type.id_type WHERE user_id = "'.$session.'"');
         $device = Capsule::select('SELECT device.id_device,device.user_id,device.id_type,device.device_name,device.updated_at,device.created_at,device.unit,type.device_name as type_name FROM device INNER JOIN type ON device.id_type = type.id_type WHERE user_id = "'.$session.'"');
-        //$min = Capsule::select('SELECT MIN(device_val) FROM device_value WHERE id_device = "'.$id.'"');
-        // $min = Capsule::select('SELECT MIN(device_val) FROM device_value');
-        //$test = Capsule::select('SELECT max(device_value.device_val) FROM device_value JOIN device ON device_value.id_device = device.id_device WHERE device_value.id_device =11 ');
-        // var_dump($test);
-
         $types = Capsule::table('type')->get();
 
 
@@ -25,12 +20,18 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
     }else{
 
         //$devicer = Capsule::select('SELECT * FROM device WHERE id_device = "'.$id.'"');
-        $devicer = $app->device->where('id_device', $id)->first();
+        $devicer = $app->device->where('id_device','=', $id)->first();
 
         //graph
-        $today = Capsule::table('device_value')->where('id_device', $id)->whereDate('created_at',Capsule::raw('CURDATE()'))->get()->count();
+        $today = Capsule::table('device_value')->where('id_device','=', $id)->whereDate('created_at',Capsule::raw('CURDATE()'))->get()->count();
+        $last_week = Capsule::select('SELECT device_val FROM device_value 
+                                      WHERE id_device = "'.$id.'" 
+                                      AND created_at >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
+                                      AND created_at < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY');
+
+
         $total = Capsule::table('device_value')->where('id_device', $id)->get()->count();
-        var_dump($today);
+
         $devtype = $app->type->where('id_type', $devicer['id_type'])->first();
         $dev_val = Capsule::table('device_value')->where('id_device','=',$id)->latest()->limit(10)->get();
         $dev_all = Capsule::table('device_value')->where('id_device','=',$id)->get();
@@ -53,10 +54,7 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
         }elseif($unit == "b"){
             $unit1 = "bar";
         }
-        //$test = "aho \" jky";
-        $sajz = "{\"device_val\":\"-33\",\"created_at\":\"2017-04-16 10:19:28\"},{\"device_val\":\"66\",\"created_at\":\"2018-04-16 10:19:28\"}";
-        //var_dump($sajz);
-        //echo("aho \" jky");
+
         $app->render('user/devices.php',
             [
                 'id_dev' => $id,
@@ -71,6 +69,7 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
                 'today' => $today,
                 'total' => $total,
                 'all' => $dev_all,
+                'week' => $last_week,
 
 
             ]);

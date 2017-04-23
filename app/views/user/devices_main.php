@@ -1,6 +1,6 @@
 {% extends 'templates/default.php' %}
 
-{% block tittle %}IoT | User devices {% endblock %}
+{% block title %}User devices {% endblock %}
 
 {% block content %}
 <div class="container">

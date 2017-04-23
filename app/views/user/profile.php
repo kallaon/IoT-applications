@@ -1,6 +1,6 @@
 {% extends 'templates/default.php' %}
 
-{% block tittle %}IoT | Profile{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block content %}
 
