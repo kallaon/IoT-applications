@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,15 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!-- jQuery -->
+       <script src="{{ urlFor('home') }}/bootstrap/js/jquery.js"></script>
 
-    <title></title>
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+     <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+     <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
-    <!-- Bootstrap Core CSS -->
+
+       <!-- Bootstrap Core JavaScript -->
+    <script src="{{ urlFor('home') }}/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="{{ urlFor('home') }}/bootstrap/js/plugins/morris/raphael.min.js"></script>
+    <script src="{{ urlFor('home') }}/bootstrap/js/plugins/morris/morris.min.js"></script>
+    <script src="{{ urlFor('home') }}/bootstrap/js/plugins/morris/morris-data.js"></script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>-->
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+   <!-- Bootstrap Core CSS -->
 
     <link href="{{ urlFor('home') }}/bootstrap/css/bootstrap.css" rel="stylesheet">
 
@@ -150,15 +164,7 @@
 <!-- /#wrapper -->
 
 
-<!-- jQuery -->
-<script src="{{ urlFor('home') }}/bootstrap/js/jquery.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ urlFor('home') }}/bootstrap/js/bootstrap.min.js"></script>
-
-<script src="{{ urlFor('home') }}/bootstrap/js/plugins/morris/raphael.min.js"></script>
-<script src="{{ urlFor('home') }}/bootstrap/js/plugins/morris/morris.min.js"></script>
-<script src="{{ urlFor('home') }}/bootstrap/js/plugins/morris/morris-data.js"></script>
 
 </body>
 

@@ -3,8 +3,8 @@
 {% block tittle %}IoT | User devices {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-lg-8">
+<div class="container">
+    <div class="col-lg-10">
 
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -12,7 +12,7 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped">
+                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -43,12 +43,16 @@
         </div>
     </div>
 
-
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
     <!--  ADD device panel  -->
 
     <div class="container">
 
-        <div class="col-md-3">
+        <div class="col-lg-2">
             <div class="info-panel panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="glyphicon glyphicon-plus"></i> Add new device</h3>
@@ -77,10 +81,10 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="col-md-3">
+
+
+        <div class="col-lg-2">
             <div class="info-panel panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="glyphicon glyphicon-zoom-in"></i> Create new type</h3>
@@ -105,11 +109,11 @@
             </div>
         </div>
     </div>
-</div>
 
 
 
-</div>
+
+
 
 
 

@@ -246,15 +246,63 @@
                         </table>
                     </div>
                     <div class="text-right">
-                        <a href="#">View All Values <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="#example">View All Values <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /.row -->
 
 
+   <!-- /.row -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-table"></i> Device values</h3>
+    </div>
+    <div class="panel-body">
+
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Value</th>
+
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Value</th>
+
+    </tr>
+    </tfoot>
+    <tbody>
+    {% for dev_all in all %}
+    <tr>
+        <td>{{ dev_all.id }}</td>
+        <td>{{ dev_all.created_at | slice(0,10) }}</td>
+        <td>{{ dev_all.created_at | slice(11,18)}}</td>
+        <td>{{ dev_all.device_val }}</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+    </div>
+</div>
+   <!-- /.row -->
+
+</div>
 </div>
 
 

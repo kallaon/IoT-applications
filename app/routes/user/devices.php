@@ -33,6 +33,7 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
         var_dump($today);
         $devtype = $app->type->where('id_type', $devicer['id_type'])->first();
         $dev_val = Capsule::table('device_value')->where('id_device','=',$id)->latest()->limit(10)->get();
+        $dev_all = Capsule::table('device_value')->where('id_device','=',$id)->get();
         //$dev_val = Capsule::select('SELECT LAST(device_val) FROM device_value WHERE id_device = "'.$id.'"');
         $tabulka = Capsule::select('SELECT device_val,created_at FROM device_value WHERE id_device = "'.$id.'"');
 
@@ -69,6 +70,7 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
                 'tab' => json_encode($tabulka),
                 'today' => $today,
                 'total' => $total,
+                'all' => $dev_all,
 
 
             ]);
