@@ -16,43 +16,38 @@
       <file leaf-file-name="devices.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes/user/devices.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="693">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="441">
+              <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
               <folding>
-                <marker date="1492954634432" expanded="true" signature="563:805" ph="SELECT devic... device" />
-                <marker date="1492954634432" expanded="true" signature="1420:1730" ph="SELECT devic... device_value" />
-                <marker date="1492954634432" expanded="true" signature="2137:2143" ph="SELECT devic... device" />
-                <marker date="1492954634432" expanded="true" signature="2137:2196" ph="SELECT TOP 1... device_value" />
-                <marker date="1492954634432" expanded="true" signature="2137:2206" ph="SELECT TOP 1... device_value" />
-                <marker date="1492954634432" expanded="true" signature="2137:2208" ph="SELECT TOP 1... device_value" />
-                <marker date="1492954634432" expanded="true" signature="2246:2320" ph="SELECT devic... device_value" />
+                <marker date="1492957889774" expanded="true" signature="563:805" ph="SELECT devic... device" />
+                <marker date="1492957889774" expanded="true" signature="1420:1730" ph="SELECT devic... device_value" />
+                <marker date="1492957889774" expanded="true" signature="2246:2320" ph="SELECT devic... device_value" />
+                <marker date="1492957889774" expanded="true" signature="2359:2624" ph="SELECT devic... device" />
+                <marker date="1492957889774" expanded="true" signature="2359:2634" ph="SELECT devic... device" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="devices_edit.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/routes/user/devices_edit.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="40" column="90" lean-forward="false" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="90" />
-              <folding>
-                <marker date="1492537322399" expanded="true" signature="228:282" ph="SELECT * FRO... device" />
-                <marker date="1492537322399" expanded="true" signature="1237:1337" ph="UPDATE devic... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="devices.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="devices.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/user/devices.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4108">
-              <caret line="158" column="39" lean-forward="false" selection-start-line="158" selection-start-column="39" selection-end-line="158" selection-end-column="39" />
+            <state relative-caret-position="339">
+              <caret line="191" column="25" lean-forward="true" selection-start-line="191" selection-start-column="25" selection-end-line="191" selection-end-column="25" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#!!top" expanded="true" />
-                <marker date="1492954634456" expanded="true" signature="6280:6286" ph=" " />
+                <marker date="1492959070734" expanded="true" signature="6280:6286" ph=" " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/templates/default.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,6 +80,9 @@
       <find>jquery</find>
       <find>jq</find>
       <find>title</find>
+      <find>Das</find>
+      <find>titl</find>
+      <find>tas</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Tomáš Bohuš\Documents\T\Daniel Jezik\IoT-applications-master</dir>
@@ -111,9 +109,9 @@
         <option value="$PROJECT_DIR$/app/views/user/table.php" />
         <option value="$PROJECT_DIR$/app/importes.php" />
         <option value="$PROJECT_DIR$/app/routes.php" />
-        <option value="$PROJECT_DIR$/app/views/templates/default.php" />
         <option value="$PROJECT_DIR$/app/views/user/profile.php" />
         <option value="$PROJECT_DIR$/app/views/user/devices_main.php" />
+        <option value="$PROJECT_DIR$/app/views/templates/default.php" />
         <option value="$PROJECT_DIR$/app/routes/user/devices.php" />
         <option value="$PROJECT_DIR$/app/views/user/devices.php" />
       </list>
@@ -426,12 +424,12 @@
       <workItem from="1492715763461" duration="2437000" />
       <workItem from="1492754815225" duration="27446000" />
       <workItem from="1492875329262" duration="9233000" />
-      <workItem from="1492932495441" duration="15211000" />
+      <workItem from="1492932495441" duration="19789000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72348000" />
+    <option name="totallyTimeSpent" value="76926000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -479,13 +477,11 @@
         <state relative-caret-position="357">
           <caret line="21" column="10" lean-forward="true" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
           <folding>
-            <marker date="1492954634432" expanded="true" signature="563:805" ph="SELECT devic... device" />
-            <marker date="1492954634432" expanded="true" signature="1420:1730" ph="SELECT devic... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2137:2143" ph="SELECT devic... device" />
-            <marker date="1492954634432" expanded="true" signature="2137:2196" ph="SELECT TOP 1... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2137:2206" ph="SELECT TOP 1... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2137:2208" ph="SELECT TOP 1... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2246:2320" ph="SELECT devic... device_value" />
+            <marker date="1492957889774" expanded="true" signature="563:805" ph="SELECT devic... device" />
+            <marker date="1492957889774" expanded="true" signature="1420:1730" ph="SELECT devic... device_value" />
+            <marker date="1492957889774" expanded="true" signature="2246:2320" ph="SELECT devic... device_value" />
+            <marker date="1492957889774" expanded="true" signature="2359:2624" ph="SELECT devic... device" />
+            <marker date="1492957889774" expanded="true" signature="2359:2634" ph="SELECT devic... device" />
           </folding>
         </state>
       </provider>
@@ -509,13 +505,11 @@
         <state relative-caret-position="170">
           <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
           <folding>
-            <marker date="1492954634432" expanded="true" signature="563:805" ph="SELECT devic... device" />
-            <marker date="1492954634432" expanded="true" signature="1420:1730" ph="SELECT devic... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2137:2143" ph="SELECT devic... device" />
-            <marker date="1492954634432" expanded="true" signature="2137:2196" ph="SELECT TOP 1... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2137:2206" ph="SELECT TOP 1... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2137:2208" ph="SELECT TOP 1... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2246:2320" ph="SELECT devic... device_value" />
+            <marker date="1492957889774" expanded="true" signature="563:805" ph="SELECT devic... device" />
+            <marker date="1492957889774" expanded="true" signature="1420:1730" ph="SELECT devic... device_value" />
+            <marker date="1492957889774" expanded="true" signature="2246:2320" ph="SELECT devic... device_value" />
+            <marker date="1492957889774" expanded="true" signature="2359:2624" ph="SELECT devic... device" />
+            <marker date="1492957889774" expanded="true" signature="2359:2634" ph="SELECT devic... device" />
           </folding>
         </state>
       </provider>
@@ -789,14 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/templates/default.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/routes/user/profile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -832,40 +818,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user/devices.php">
+    <entry file="file://$PROJECT_DIR$/app/views/templates/default.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4108">
-          <caret line="158" column="39" lean-forward="false" selection-start-line="158" selection-start-column="39" selection-end-line="158" selection-end-column="39" />
+        <state relative-caret-position="357">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes/user/devices_edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="40" column="90" lean-forward="false" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="90" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#!!top" expanded="true" />
-            <marker date="1492954634456" expanded="true" signature="6280:6286" ph=" " />
+            <marker date="1492537322399" expanded="true" signature="228:282" ph="SELECT * FRO... device" />
+            <marker date="1492537322399" expanded="true" signature="1237:1337" ph="UPDATE devic... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes/user/devices.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="441">
+          <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
           <folding>
-            <marker date="1492954634432" expanded="true" signature="563:805" ph="SELECT devic... device" />
-            <marker date="1492954634432" expanded="true" signature="1420:1730" ph="SELECT devic... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2137:2143" ph="SELECT devic... device" />
-            <marker date="1492954634432" expanded="true" signature="2137:2196" ph="SELECT TOP 1... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2137:2206" ph="SELECT TOP 1... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2137:2208" ph="SELECT TOP 1... device_value" />
-            <marker date="1492954634432" expanded="true" signature="2246:2320" ph="SELECT devic... device_value" />
+            <marker date="1492957889774" expanded="true" signature="563:805" ph="SELECT devic... device" />
+            <marker date="1492957889774" expanded="true" signature="1420:1730" ph="SELECT devic... device_value" />
+            <marker date="1492957889774" expanded="true" signature="2246:2320" ph="SELECT devic... device_value" />
+            <marker date="1492957889774" expanded="true" signature="2359:2624" ph="SELECT devic... device" />
+            <marker date="1492957889774" expanded="true" signature="2359:2634" ph="SELECT devic... device" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes/user/devices_edit.php">
+    <entry file="file://$PROJECT_DIR$/app/views/user/devices.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="40" column="90" lean-forward="false" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="90" />
+        <state relative-caret-position="339">
+          <caret line="191" column="25" lean-forward="true" selection-start-line="191" selection-start-column="25" selection-end-line="191" selection-end-column="25" />
           <folding>
-            <marker date="1492537322399" expanded="true" signature="228:282" ph="SELECT * FRO... device" />
-            <marker date="1492537322399" expanded="true" signature="1237:1337" ph="UPDATE devic... " />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#!!top" expanded="true" />
+            <marker date="1492959070734" expanded="true" signature="6280:6286" ph=" " />
           </folding>
         </state>
       </provider>

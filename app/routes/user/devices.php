@@ -37,6 +37,7 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
         $dev_all = Capsule::table('device_value')->where('id_device','=',$id)->get();
         //$dev_val = Capsule::select('SELECT LAST(device_val) FROM device_value WHERE id_device = "'.$id.'"');
         $tabulka = Capsule::select('SELECT device_val,created_at FROM device_value WHERE id_device = "'.$id.'"');
+        $device = Capsule::select('SELECT device.id_device,device.user_id,device.id_type,device.device_name,device.updated_at,device.created_at,device.unit,type.device_name as type_name FROM device INNER JOIN type ON device.id_type = type.id_type WHERE user_id = "'.$session.'" AND device.id_device = "'.$id.'"');
 
 
         $min = Capsule::table('device_value')->where('id_device','=',$id)->min('device_val');
@@ -45,7 +46,7 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
         $unit = Capsule::table('device')->where('id_device','=',$id)->min('unit');
         //$unit = Capsule::table('device')->select('unit')->where('id_device','=',$id)->get();
         //var_dump($tabulka);
-       //var_dump($dev_val);
+       var_dump($device);
         $unit1 = $unit;
         if($unit == "c"){
             $unit1 = "°C";
@@ -57,6 +58,7 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
 
         $app->render('user/devices.php',
             [
+                'device_info' => $device,
                 'id_dev' => $id,
                 'min' => $min,
                 'max' => $max,

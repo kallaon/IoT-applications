@@ -14,10 +14,7 @@
     <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
      <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
      <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-     <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
      <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
-
-
 
        <!-- Bootstrap Core JavaScript -->
     <script src="{{ urlFor('home') }}/bootstrap/js/bootstrap.min.js"></script>
@@ -142,10 +139,10 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            <i class="fa fa-home"></i>  <a href="{{ urlFor('devices') }}">Home</a>
                         </li>
                         <li class="active">
-                            <i class="fa fa-file"></i> Blank page
+                            <i class="fa fa-file"></i> {{ block('title') }}
                         </li>
                     </ol>
                 </div>

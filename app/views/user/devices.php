@@ -175,13 +175,27 @@
     <div class="col-lg-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
+                <h3 class="panel-title"><i class="fa fa-info fa-fw"></i> Info Panel</h3>
             </div>
             <div class="panel-body">
+
+                <table class="table">
+                    <tr>
+                        <td>Device name</td>
+                        <td>{{ device_info[0].device_name }}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Owner</td>
+                        <td>{{ auth.name }}</td>
+                    </tr>
+                </table>
+
                 <div class="list-group">
                     <a href="#" class="list-group-item">
-                        <span class="badge">just now</span>
-                        <i class="fa fa-fw fa-calendar"></i> Calendar updated
+                        <span class="badge">{{ device_info[0].updated_at }}</span>
+                        <i class="fa fa-fw fa-calendar"></i> Latest update
                     </a>
                     <a href="#" class="list-group-item">
                         <span class="badge">4 minutes ago</span>
