@@ -193,43 +193,46 @@
                 </table>
 
                 <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <span class="badge">{{ device_info[0].updated_at }}</span>
-                        <i class="fa fa-fw fa-calendar"></i> Latest update
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">4 minutes ago</span>
-                        <i class="fa fa-fw fa-comment"></i> Commented on a post
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">23 minutes ago</span>
-                        <i class="fa fa-fw fa-truck"></i> Order 392 shipped
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">46 minutes ago</span>
-                        <i class="fa fa-fw fa-money"></i> Invoice 653 has been paid
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">1 hour ago</span>
-                        <i class="fa fa-fw fa-user"></i> A new user has been added
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">2 hours ago</span>
-                        <i class="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">yesterday</span>
-                        <i class="fa fa-fw fa-globe"></i> Saved the world
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">two days ago</span>
-                        <i class="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"
-                    </a>
                 </div>
-                <div class="text-right">
-                    <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
+                <div class="list-group-item">
+                    <span class="badge">0e25c084bb8a1882be8bf54e842d6c16</span>
+                    <i class="fa fa-fw fa-key"></i> API key
                 </div>
-            </div>
+                <div class="list-group-item">
+                    <span class="badge">{{ device_info[0].id_device }}</span>
+                    <i class="fa fa-tag"></i> Device #ID
+                </div>
+
+                <div class="list-group-item">
+                    <span class="badge">{{ device_info[0].created_at }}</span>
+                    <i class="fa fa-calendar-plus-o"></i> Created at
+                </div>
+                <div class="list-group-item">
+                    <span class="badge">{{ device_info[0].updated_at }}</span>
+                    <i class="fa fa-fw fa-calendar"></i> Latest update
+                </div>
+                <div class="list-group-item">
+                    <span class="badge">{{ device_info[0].type_name }}</span>
+                    <i class="fa fa-fw fa-tasks"></i> Type
+                </div>
+                <div class="list-group-item">
+                    <span class="badge">{{ today | raw }}</span>
+                    <i class="fa fa-fw fa-battery-1"></i> Created today
+                </div>
+                <div class="list-group-item">
+                    <span class="badge">{{ week | length }}</span>
+                    <i class="fa fa-fw fa-battery-2"></i> Created last week
+                </div>
+                <div class="list-group-item">
+                    <span class="badge">{{ total | raw }}</span>
+                    <i class="fa fa-fw fa-battery-4"></i> Created total
+                </div>
+                    <div class="list-group-item">
+                        <span class="badge">{{ 'now'|date('Y-d-m H:i:s ') }}</span>
+                        <i class="fa fa-fw fa-cog"></i> Generated
+                    </div>
+                </div>
+
         </div>
     </div>
     <div class="col-lg-4">
