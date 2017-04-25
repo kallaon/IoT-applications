@@ -118,6 +118,7 @@ function authenticate(\Slim\Route $route) {
  * params - name
  * url - /value/
  */
+/*
 $app->post('/value', 'authenticate', function() use ($app) {
     // check for required params
     // verifyRequiredParams(array('value','id_device'));
@@ -130,7 +131,7 @@ $app->post('/value', 'authenticate', function() use ($app) {
     $db = new DbHandler();
 
     // creating new task
-    $task_id = $db->createRecord($id_device, $value);
+   // $task_id = $db->createRecord($id_device, $value);
 
     if ($task_id != NULL) {
         $response["error"] = false;
@@ -142,6 +143,7 @@ $app->post('/value', 'authenticate', function() use ($app) {
     }
     echoRespnse(201, $response);
 });
+*/
 
 /**
  * Creating new device
@@ -149,18 +151,22 @@ $app->post('/value', 'authenticate', function() use ($app) {
  * method - POST
  * params - device_name, type,
  */
-$app->post('/device', 'authenticate', function() use ($app) {
+
+$app->post('/device',  function() use ($app) {
     // check for required params
     verifyRequiredParams(array('name','type'));
-
+    $headers = apache_request_headers();
     $response = array();
 
+    //$app = \Slim\Slim::getInstance();
+
     // reading post params
+    $api_key = $headers['Authorization'];
     $device_name = $app->request->post('name');
     $type = $app->request->post('type');
 
     $db = new DbHandler();
-    $res = $db->createUser($name, $email, $password);
+    $res = $db->createDevice($device_name, $type, $api_key);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
@@ -262,6 +268,7 @@ $app->get('/device/', function() {
     echoRespnse(200, $response);
 });
 
+// TODO: tu som to skusal prepisat na mysqli lebo tam niesu bind parametre posunul som sa dalej ale stale nic
 /**
  * Return all created types
  * url - /device/type

@@ -24,41 +24,7 @@ class DbHandler {
      * @param String $email User login email id
      * @param String $password User login password
      */
-    public function createUser($name, $email, $password) {
-        require_once 'PassHash.php';
-        $response = array();
 
-        // First check if user already existed in db
-        if (!$this->isUserExists($email) && !$this->isUserExistsName($name)) {
-            // Generating password hash
-            $password_hash = PassHash::hash($password);
-
-            // Generating API key
-            $api_key = $this->generateApiKey();
-
-            // insert query
-            $stmt = $this->conn->prepare("INSERT INTO user(name, email, password, api_key,created_at, updated_at ) values(?, ?, ?, ?, now(),now())");
-            $stmt->bind_param("ssss", $name, $email, $password_hash, $api_key);
-
-            $result = $stmt->execute();
-
-            $stmt->close();
-
-            // Check for successful insertion
-            if ($result) {
-                // User successfully inserted
-                return USER_CREATED_SUCCESSFULLY;
-            } else {
-                // Failed to create user
-                return USER_CREATE_FAILED;
-            }
-        } else {
-            // User with same email already existed in the db
-            return USER_ALREADY_EXISTED;
-        }
-
-        return $response;
-    }
 
     /**
      * Checking user login
@@ -106,15 +72,7 @@ class DbHandler {
      * @param String $email email to check in db
      * @return boolean
      */
-    private function isUserExists($email) {
-        $stmt = $this->conn->prepare("SELECT id from user WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
-        $num_rows = $stmt->num_rows;
-        $stmt->close();
-        return $num_rows > 0;
-    }
+
 
     private function isUserExistsName($name) {
         $stmt = $this->conn->prepare("SELECT id from user WHERE name = ?");
@@ -158,21 +116,7 @@ class DbHandler {
         }
     }
 
-    /**
-     * Fetching user id by api key
-     * @param String $api_key user api key
-     */
-    public function getUserId($api_key) {
-        $stmt = $this->conn->prepare("SELECT id FROM user WHERE api_key = ?");
-        $stmt->bind_param("s", $api_key);
-        if ($stmt->execute()) {
-            $user_id = $stmt->get_result()->fetch_assoc();
-            $stmt->close();
-            return $user_id;
-        } else {
-            return NULL;
-        }
-    }
+
 
     /**
      * Validating user api key
@@ -206,30 +150,69 @@ class DbHandler {
      */
 
     //
-    public function createRecord($id_device, $value) {
-        $stmt = $this->conn->prepare("INSERT INTO device_value ( id_device, created_at,updated_at, device_val) VALUES (?, now(), now(), ?)");
-        $stmt->bind_param("is", $id_device,$value );
 
-        //$result = $stmt->execute();
+
+    public function createDevice($device_name, $type, $api_key) {
+        require_once 'PassHash.php';
+        $response = array();
+
+        // First check if user already existed in db
+        if (!$this->isDeviceExists($device_name)) {
+            // Generating password hash
+            $name = $device_name;
+            $user = getUserId($api_key);
+            // insert query
+            $stmt = $this->conn->prepare("INSERT INTO device(user , id_type , device_name,created_at, updated_at, unit ) values(?, '3', ?, now(),now()),'ff'");
+            $stmt->bind_param("is", $user, $name);
+
+            $result = $stmt->execute();
+
+            $stmt->close();
+
+            // Check for successful insertion
+            if ($result) {
+                // User successfully inserted
+                return USER_CREATED_SUCCESSFULLY;
+            } else {
+                // Failed to create user
+                return USER_CREATE_FAILED;
+            }
+        } else {
+            // User with same email already existed in the db
+            return USER_ALREADY_EXISTED;
+        }
+
+        return $response;
+    }
+    /**
+     * Fetching device by name
+     * @param String $device_name
+     */
+    private function isDeviceExists($device_name) {
+        $stmt = $this->conn->prepare("SELECT device_name from device WHERE device_name = ?");
+        $stmt->bind_param("s", $device_name);
         $stmt->execute();
+        $stmt->store_result();
+        $num_rows = $stmt->num_rows;
         $stmt->close();
-        /*
-                if ($result) {
-                    $res = "laaaus";
-                    if ($res) {
-                        return $res;
-
-                    } else {
-                        // task failed to create
-                        return NULL;
-                    }
-                } else {
-                    // task failed to create
-                    return NULL;
-                }
-        */
+        return $num_rows > 0;
     }
 
+    /**
+     * Fetching user id by api key
+     * @param String $api_key user api key
+     */
+    public function getUserId($api_key) {
+        $stmt = $this->conn->prepare("SELECT id FROM user WHERE api_key = ?");
+        $stmt->bind_param("s", $api_key);
+        if ($stmt->execute()) {
+            $user_id = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user_id;
+        } else {
+            return NULL;
+        }
+    }
 
     /**
      * Fetching all device values
@@ -274,8 +257,18 @@ class DbHandler {
      * Fetching all devices types
      */
     public function getAllDevicesTypes() {
-        $res = $this->conn->query('SELECT * type');
-        echo current($res);
+        $sql = 'SELECT device_name FROM type';
+        //echo current($res);
+
+        $result = mysqli_query($this->conn,$sql) ;
+
+        while($row = $result->fetch_array())
+        {
+            echo $row['device_name'];
+            echo "<br />";
+        }
+
     }
+
 }
 ?>
