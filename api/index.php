@@ -1,15 +1,13 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
-
 require_once '../app/config/include/DbHandler.php';
 require_once '../app/config/include/PassHash.php';
 //require '.././libs/Slim/Slim.php';
-//require '../vendor/slim/slim/Slim/Slim.php';
+require '../vendor/slim/slim/Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
 
-//$app = new \Slim\Slim();
+$app = new \Slim\Slim();
 
 // User id from db - Global Variable
 $user_id = NULL;
@@ -76,47 +74,6 @@ function echoRespnse($status_code, $response) {
 }
 
 /**
- * User Login
- * url - /login
- * method - POST
- * params - email, password
- */
-$app->post('/login', function() use ($app) {
-    // check for required params
-    verifyRequiredParams(array('email', 'password'));
-
-    // reading post params
-    $email = $app->request()->post('email');
-    $password = $app->request()->post('password');
-    $response = array();
-
-    $db = new DbHandler();
-    // check for correct email and password
-    if ($db->checkLogin($email, $password)) {
-        // get the user by email
-        $user = $db->getUserByEmail($email);
-
-        if ($user != NULL) {
-            $response["error"] = false;
-            $response['name'] = $user['name'];
-            $response['email'] = $user['email'];
-            $response['apiKey'] = $user['api_key'];
-            //$response['createdAt'] = $user['created_at'];
-        } else {
-            // unknown error occurred
-            $response['error'] = true;
-            $response['message'] = "An error occurred. Please try again";
-        }
-    } else {
-        // user credentials are wrong
-        $response['error'] = true;
-        $response['message'] = 'Login failed. Incorrect credentials';
-    }
-
-    echoRespnse(200, $response);
-});
-
-/**
  * Adding Middle Layer to authenticate every request
  * Checking if the request has valid api key in the 'Authorization' header
  */
@@ -163,10 +120,10 @@ function authenticate(\Slim\Route $route) {
  */
 $app->post('/value', 'authenticate', function() use ($app) {
     // check for required params
-    verifyRequiredParams(array('value','id_device'));
+    // verifyRequiredParams(array('value','id_device'));
 
     $response = array();
-    $id_device = $app->request->post('id_device');
+    $dev = $app->request->post('id_device');
     $value = $app->request->post('value');
 
     global $user_id;
@@ -186,29 +143,21 @@ $app->post('/value', 'authenticate', function() use ($app) {
     echoRespnse(201, $response);
 });
 
-
-
-
-
 /**
- * User Registration
- * url - /register
+ * Creating new device
+ * url - /device
  * method - POST
- * params - name, email, password
+ * params - device_name, type,
  */
-$app->post('/test', function() use ($app) {
+$app->post('/device', 'authenticate', function() use ($app) {
     // check for required params
-    verifyRequiredParams(array('name', 'email', 'password'));
+    verifyRequiredParams(array('name','type'));
 
     $response = array();
 
     // reading post params
-    $name = $app->request->post('name');
-    $email = $app->request->post('email');
-    $password = $app->request->post('password');
-
-    // validating email address
-    validateEmail($email);
+    $device_name = $app->request->post('name');
+    $type = $app->request->post('type');
 
     $db = new DbHandler();
     $res = $db->createUser($name, $email, $password);
@@ -219,25 +168,29 @@ $app->post('/test', function() use ($app) {
         echoRespnse(201, $response);
     } else if ($res == USER_CREATE_FAILED) {
         $response["error"] = true;
-        $response["message"] = "Oops! An error occurred while registering";
+        $response["message"] = "Oops! An error occurred while registereing";
         echoRespnse(200, $response);
     } else if ($res == USER_ALREADY_EXISTED) {
         $response["error"] = true;
-        $response["message"] = "Sorry, this email already existed or username is already taken";
+        $response["message"] = "Sorry, this email already existed";
         echoRespnse(200, $response);
     }
 });
-//vrati vsetky hodnoty zariadenia
 
-$app->get('/value', 'authenticate', function() {
+/**
+ * Return all device values
+ * url - /value/:id
+ * method - GET
+ * params - id
+ */
 
-    //global $user_id;
-    $device_id = 19;
+$app->get('/value/:id', function($id_device) {
+
     $response = array();
     $db = new DbHandler();
 
     // fetching all user tasks
-    $result = $db->getAllUserTasks( $device_id);
+    $result = $db->getAllDeviceValues( $id_device );
 
     $response["error"] = false;
     $response["tasks"] = array();
@@ -245,23 +198,98 @@ $app->get('/value', 'authenticate', function() {
     // looping through result and preparing tasks array
     while ($task = $result->fetch_assoc()) {
         $tmp = array();
-        $tmp["Device Value"] = $task["device_val"];
-        $tmp["Created at"] = $task["created_at"];
-        $tmp["Updated at"] = $task["updated_at"];
+        $tmp["device_val"] = $task["device_val"];
+        $tmp["created_at"] = $task["created_at"];
+        $tmp["updated_at"] = $task["updated_at"];
         array_push($response["tasks"], $tmp);
     }
+    echoRespnse(200, $response);
+});
 
+/**
+ * Return information about device
+ * url - /device/:id
+ * method - GET
+ */
+
+$app->get('/device/:id', function($id) {
+
+    $response = array();
+    $db = new DbHandler();
+
+    // fetching all user tasks
+    $result = $db->getDeviceInfo($id);
+
+    $response["error"] = false;
+    $response["tasks"] = array();
+
+    // looping through result and preparing tasks array
+    while ($task = $result->fetch_assoc()) {
+        $tmp = array();
+        $tmp["device_name"] = $task["device_name"];
+        $tmp["created_at"] = $task["created_at"];
+        $tmp["updated_at"] = $task["updated_at"];
+        array_push($response["tasks"], $tmp);
+    }
+    echoRespnse(200, $response);
+});
+
+/**
+ * Return information about all devices
+ * url - /device/
+ * method - GET
+ */
+// TODO: nefunguje, pravdepodobne zlý bind bapameter ....
+$app->get('/device/', function() {
+
+    $response = array();
+    $db = new DbHandler();
+
+    // fetching all user tasks
+    $result = $db->getAllDevicesInfo();
+
+    $response["error"] = false;
+    $response["tasks"] = array();
+
+    // looping through result and preparing tasks array
+    while ($task = $result->fetch_assoc()) {
+        $tmp = array();
+        $tmp["device_name"] = $task["device_name"];
+        $tmp["created_at"] = $task["created_at"];
+        $tmp["updated_at"] = $task["updated_at"];
+        array_push($response["tasks"], $tmp);
+    }
+    echoRespnse(200, $response);
+});
+
+/**
+ * Return all created types
+ * url - /device/type
+ * method - GET
+ */
+$app->get('/device/type/', function() {
+
+    $response = array();
+    $db = new DbHandler();
+
+    // fetching all user tasks
+    $result = $db->getAllDevicesTypes();
+
+    $response["error"] = false;
+    $response["tasks"] = array();
+
+    // looping through result and preparing tasks array
+    while ($task = $result->fetch_assoc()) {
+        $tmp = array();
+        $tmp["device_name"] = $task["device_name"];
+        //$tmp["created_at"] = $task["created_at"];
+       // $tmp["updated_at"] = $task["updated_at"];
+        array_push($response["tasks"], $tmp);
+    }
     echoRespnse(200, $response);
 });
 
 
-$app->get('/api/tt', function() use ($app) {
-
-   // $db = Capsule::table('user')->select('name')->get();
-   // $array() = Capsule::table('user')->select('name')->get();
-   // var_dump(json_encode($db));
-    echoRespnse(200, "hjello");
-});
-
+$app->run();
 
 ?>

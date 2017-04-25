@@ -4,7 +4,6 @@
  * Class to handle all db operations
  * This class will have CRUD methods for database tables
  *
- * @author Ravi Tamada
  */
 class DbHandler {
 
@@ -231,33 +230,14 @@ class DbHandler {
         */
     }
 
-    /**
-     * Fetching single task
-     * @param String $task_id id of the task
-     */
-    public function getTask($task_id, $user_id) {
-        $stmt = $this->conn->prepare("SELECT t.id, t.task, t.status, t.created_at from tasks t, user_tasks ut WHERE t.id = ? AND ut.task_id = t.id AND ut.user_id = ?");
-        $stmt->bind_param("ii", $task_id, $user_id);
-        if ($stmt->execute()) {
-            $task = $stmt->get_result()->fetch_assoc();
-            $stmt->close();
-            return $task;
-        } else {
-            return NULL;
-        }
-    }
 
     /**
-     * Fetching all user tasks
-     * @param String $user_id id of the user
-     *
-     * public function createRecord($id_device, $value) {
-     * $stmt = $this->conn->prepare("INSERT INTO device_value ( id_device, created_at,updated_at, device_val) VALUES (?, now(), now(), ?)");
-     * $stmt->bind_param("is", $id_device,$value );
+     * Fetching all device values
+     * @param Integer $id of device
      */
-    public function getAllUserTasks($device_id) {
-        $stmt = $this->conn->prepare("SELECT * FROM device_value WHERE id_device = 19");
-        //$stmt->bind_param("i", $device_id);
+    public function getAllDeviceValues($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM device_value WHERE id_device = ?");
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();
@@ -265,48 +245,37 @@ class DbHandler {
     }
 
     /**
-     * Updating task
-     * @param String $task_id id of the task
-     * @param String $task task text
-     * @param String $status task status
+     * Fetching all device information
      */
-    public function updateTask($user_id, $task_id, $task, $status) {
-        $stmt = $this->conn->prepare("UPDATE tasks t, user_tasks ut set t.task = ?, t.status = ? WHERE t.id = ? AND t.id = ut.task_id AND ut.user_id = ?");
-        $stmt->bind_param("siii", $task, $status, $task_id, $user_id);
+    public function getDeviceInfo($id) {
+
+        $stmt = $this->conn->prepare("SELECT * FROM device WHERE id_device = ?");
+        $stmt->bind_param("i", $id);
         $stmt->execute();
-        $num_affected_rows = $stmt->affected_rows;
+        $tasks = $stmt->get_result();
         $stmt->close();
-        return $num_affected_rows > 0;
+        return $tasks;
     }
 
     /**
-     * Deleting a task
-     * @param String $task_id id of the task to delete
+     * Fetching all devices information
      */
-    public function deleteTask($user_id, $task_id) {
-        $stmt = $this->conn->prepare("DELETE t FROM tasks t, user_tasks ut WHERE t.id = ? AND ut.task_id = t.id AND ut.user_id = ?");
-        $stmt->bind_param("ii", $task_id, $user_id);
+    public function getAllDevicesInfo() {
+        $binder = "*";
+        $stmt = $this->conn->prepare("SELECT ? FROM device");
+        $stmt->bind_param("s", $binder);
         $stmt->execute();
-        $num_affected_rows = $stmt->affected_rows;
+        $tasks = $stmt->get_result();
         $stmt->close();
-        return $num_affected_rows > 0;
+        return $tasks;
     }
-
-    /* ------------- `user_tasks` table method ------------------ */
 
     /**
-     * Function to assign a task to user
-     * @param String $user_id id of the user
-     * @param String $task_id id of the task
+     * Fetching all devices types
      */
-    public function createUserTask($user_id, $task_id) {
-        $stmt = $this->conn->prepare("INSERT INTO user_tasks(user_id, task_id) values(?, ?)");
-        $stmt->bind_param("ii", $user_id, $task_id);
-        $result = $stmt->execute();
-        $stmt->close();
-        return $result;
+    public function getAllDevicesTypes() {
+        $res = $this->conn->query('SELECT * type');
+        echo current($res);
     }
-
 }
-
 ?>

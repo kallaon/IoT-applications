@@ -36,7 +36,7 @@ $app->configureMode($app->config('mode'),function () use ($app){
     $app->config = Config::load(INC_ROOT . "/app/config/{$app->mode}.php");
 });
 
-//require '../api/index.php';
+
 require 'config/database.php';
 require 'filters.php';
 require 'routes.php';
