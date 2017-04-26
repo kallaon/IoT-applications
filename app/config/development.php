@@ -11,7 +11,7 @@ return [
     'db' => [
         'driver' => 'mysql',
         'host' => 'localhost',
-        'name' => 'bakalarka',
+        'name' => 'iot_database',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',

@@ -8,6 +8,7 @@ use Options\User\User;
 use Options\User\Device;
 use Options\User\Type;
 use Options\User\DeviceValue;
+use Options\User\DashboardType;
 use Options\Helpers\Hash;
 use Options\Validation\Validator;
 use Options\Middleware\BeforeMiddleware;
@@ -36,7 +37,6 @@ $app->configureMode($app->config('mode'),function () use ($app){
     $app->config = Config::load(INC_ROOT . "/app/config/{$app->mode}.php");
 });
 
-
 require 'config/database.php';
 require 'filters.php';
 require 'routes.php';
@@ -58,6 +58,10 @@ $app->container->set('type',function (){
 
 $app->container->set('device_value',function (){
     return new DeviceValue;
+});
+
+$app->container->set('dashboard_type',function (){
+    return new DashboardType;
 });
 
 $app->container->singleton('hash',function () use ($app){

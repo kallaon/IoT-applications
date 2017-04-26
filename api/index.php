@@ -152,21 +152,19 @@ $app->post('/value', 'authenticate', function() use ($app) {
  * params - device_name, type,
  */
 
-$app->post('/device',  function() use ($app) {
+$app->post('/device', 'authenticate', function() use ($app) {
     // check for required params
-    verifyRequiredParams(array('name','type'));
-    $headers = apache_request_headers();
+    verifyRequiredParams(array('name'));
     $response = array();
 
-    //$app = \Slim\Slim::getInstance();
-
     // reading post params
-    $api_key = $headers['Authorization'];
+    global $user_id;
     $device_name = $app->request->post('name');
     $type = $app->request->post('type');
 
+
     $db = new DbHandler();
-    $res = $db->createDevice($device_name, $type, $api_key);
+    $res = $db->createDevice($device_name, $type, $user_id);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
@@ -290,7 +288,7 @@ $app->get('/device/type/', function() {
         $tmp = array();
         $tmp["device_name"] = $task["device_name"];
         //$tmp["created_at"] = $task["created_at"];
-       // $tmp["updated_at"] = $task["updated_at"];
+        // $tmp["updated_at"] = $task["updated_at"];
         array_push($response["tasks"], $tmp);
     }
     echoRespnse(200, $response);

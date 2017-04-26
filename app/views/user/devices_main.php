@@ -3,7 +3,7 @@
 {% block title %}User devices {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="row">
     <div class="col-lg-10">
 
         <div class="panel panel-default">
@@ -43,16 +43,7 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        } );
-    </script>
-    <!--  ADD device panel  -->
-
-    <div class="container">
-
-        <div class="col-lg-2">
+    <div class="col-lg-2">
             <div class="info-panel panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="glyphicon glyphicon-plus"></i> Add new device</h3>
@@ -62,12 +53,13 @@
                         <fieldset>
                             <div class="form-group">
                                 <label for="name">Device name</label>
-                                <input class="form-control" placeholder="Name" name="name" type="text" id="name"  autofocus>
+                                <input class="form-control" placeholder="Name" name="name" type="text" id="name" autofocus required>
                             </div>
                             <div class="form-group">
                                 <label for="type">Type</label>
                                 <div class="form-group">
-                                    <select name="menu-type" id="menu-type">
+                                    <select name="menu-type" id="menu-type" required>
+                                        <option value="">Select</option>
 
                                         {% for type in types %}
                                         <option value="{{ type.id_type }}"> {{ type.device_name }}</option>
@@ -82,9 +74,7 @@
             </div>
         </div>
 
-
-
-        <div class="col-lg-2">
+    <div class="col-lg-2">
             <div class="info-panel panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="glyphicon glyphicon-zoom-in"></i> Create new type</h3>
@@ -94,11 +84,11 @@
                         <fieldset>
                             <div class="form-group">
                                 <label for="name">Type name</label>
-                                <input class="form-control" placeholder="Type Name" name="type_name" type="text" id="type_name"  autofocus>
+                                <input class="form-control" placeholder="Type Name" name="type_name" type="text" id="type_name" autofocus required>
                             </div>
                             <div class="form-group">
                                 <label for="name">Shortcut </label>
-                                <input class="form-control" placeholder="°C, %, bar, dB" name="shrt_name" type="text" id="shrt_name"  autofocus>
+                                <input class="form-control" placeholder="°C, %, bar, dB" name="shrt_name" type="text" id="shrt_name" autofocus required>
                                 <span class="help-block">{% if errors.has('shrt_name') %} {{ errors.first('shrt_name') }} {% endif %}</span>
                             </div>
                             <div class="form-group">
@@ -108,14 +98,15 @@
                 </div>
             </div>
         </div>
-    </div>
 
 
+</div>
 
-
-
-
-
-
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+<!--  ADD device panel  -->
 
 {% endblock %}

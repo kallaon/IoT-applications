@@ -152,18 +152,16 @@ class DbHandler {
     //
 
 
-    public function createDevice($device_name, $type, $api_key) {
-        require_once 'PassHash.php';
+    public function createDevice($device_name, $type, $user_id) {
+
         $response = array();
 
-        // First check if user already existed in db
+        // First check if device already existed in db
         if (!$this->isDeviceExists($device_name)) {
+            echo "ok";
             // Generating password hash
-            $name = $device_name;
-            $user = getUserId($api_key);
-            // insert query
-            $stmt = $this->conn->prepare("INSERT INTO device(user , id_type , device_name,created_at, updated_at, unit ) values(?, '3', ?, now(),now()),'ff'");
-            $stmt->bind_param("is", $user, $name);
+            $stmt = $this->conn->prepare("INSERT INTO `device` (`id_device`, `user_id`, `id_type`, `device_name`, `updated_at`, `created_at`, `unit`) VALUES (NULL, ?, ?, ?, '2017-04-06 00:00:00', '2017-04-14 00:00:00', 's');");
+            $stmt->bind_param("iis", $user_id,$type, $device_name);
 
             $result = $stmt->execute();
 
@@ -184,6 +182,21 @@ class DbHandler {
 
         return $response;
     }
+
+
+    private function ifTypExists($type) {
+        $stmt = $this->conn->prepare("SELECT unit from type WHERE unit = ?");
+        $stmt->bind_param("s", $type);
+        $stmt->execute();
+
+        if(store_result() !== false)
+        {
+            return 'Assigned';
+        }else{
+            return 'Available';
+        }
+    }
+
     /**
      * Fetching device by name
      * @param String $device_name
@@ -212,6 +225,16 @@ class DbHandler {
         } else {
             return NULL;
         }
+    }
+
+    private function isUserExistId($id) {
+        $stmt = $this->conn->prepare("SELECT name from user WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->store_result();
+        $num_rows = $stmt->num_rows;
+        $stmt->close();
+        return $num_rows > 0;
     }
 
     /**
