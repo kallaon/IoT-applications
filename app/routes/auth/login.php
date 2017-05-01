@@ -26,7 +26,7 @@ $app->post('/login', function () use ($app) {
         {
             $_SESSION[$app->config->get('auth.session')] = $user->id;
             $app->flash('global','You are now signed in');
-            return $app->response->redirect($app->urlFor('home'));
+            return $app->response->redirect($app->urlFor('dashboard'));
         } else
         {
             $app->flash('global','Could not log in');

@@ -106,7 +106,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-area-chart"></i> Area Chart {{ week[1].device_val }}</h3>
+                    <h3 class="panel-title"><i class="fa fa-area-chart"></i> Area Chart </h3>
                 </div>
                 <div class="panel-body">
                     <div id="myfirstchart" style="height: 250px;">

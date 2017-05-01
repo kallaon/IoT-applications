@@ -108,9 +108,9 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                {% if auth %}
-                <ul class="nav navbar-nav side-nav">
 
+                <ul class="nav navbar-nav side-nav">
+                    {% if auth %}
 
                     <li>
                         <a href="{{ urlFor('dashboard') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
@@ -118,9 +118,9 @@
                     <li>
                         <a href="{{ urlFor('devices') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Devices</a>
                     </li>
-
+                    {% endif %}
                     <li>
-                        <a href="{{ urlFor('api_guide') }}"><i class="fa fa fa-cloud"></i> API Guide</a>
+                        <a href="{{ urlFor('api_guide') }}"><i class="fa fa fa-cloud"></i>  API Guide</a>
                     </li>
 
                     <li>
@@ -128,7 +128,7 @@
                     </li>
 
                 </ul>
-                {% endif %}
+
             </div>
 
             <!-- /.navbar-collapse -->

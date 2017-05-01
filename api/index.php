@@ -231,6 +231,7 @@ $app->get('/device/:id', function($id) {
 
     $response["error"] = false;
     $response["tasks"] = array();
+    //var_dump($result);
 
     // looping through result and preparing tasks array
     while ($task = $result->fetch_assoc()) {
@@ -246,13 +247,14 @@ $app->get('/device/:id', function($id) {
     echoRespnse(200, $response);
 
 });
-
+/* WORKING */
 /**
  * Return information about all devices
  * url - /device/
  * method - GET
  */
-// TODO: nefunguje, pravdepodobne zlý bind bapameter ....
+//TODO: v prislusnej funkcii je nezmyselny bind parameter, ale funguje
+//TODO: problem s vracanim unitu - znak °C robi problem
 $app->get('/device/', function() {
 
     $response = array();
@@ -267,15 +269,21 @@ $app->get('/device/', function() {
     // looping through result and preparing tasks array
     while ($task = $result->fetch_assoc()) {
         $tmp = array();
+        $tmp["id_device"] = $task["id_device"];
+        $tmp["id_type"] = $task["id_type"];
         $tmp["device_name"] = $task["device_name"];
-        $tmp["created_at"] = $task["created_at"];
         $tmp["updated_at"] = $task["updated_at"];
+        $tmp["created_at"] = $task["created_at"];
+        //$tmp["unit"] = $task["unit"];
         array_push($response["tasks"], $tmp);
     }
     echoRespnse(200, $response);
 });
 
-// TODO: tu som to skusal prepisat na mysqli lebo tam niesu bind parametre posunul som sa dalej ale stale nic
+/* WORKING */
+
+//TODO: v prislusnej funkcii je nezmyselny bind parameter, ale funguje
+//TODO: problem s vracanim unitu - znak °C robi problem
 /**
  * Return all created types
  * url - /device/type
@@ -295,9 +303,9 @@ $app->get('/device/type/', function() {
     // looping through result and preparing tasks array
     while ($task = $result->fetch_assoc()) {
         $tmp = array();
+        $tmp["id_type"] = $task["id_type"];
         $tmp["device_name"] = $task["device_name"];
-        //$tmp["created_at"] = $task["created_at"];
-        // $tmp["updated_at"] = $task["updated_at"];
+        //$tmp["unit"] = $task["unit"];
         array_push($response["tasks"], $tmp);
     }
     echoRespnse(200, $response);

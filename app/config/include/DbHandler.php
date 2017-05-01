@@ -327,9 +327,9 @@ class DbHandler {
      * Fetching all devices information
      */
     public function getAllDevicesInfo() {
-        $binder = "*";
-        $stmt = $this->conn->prepare("SELECT ? FROM device");
-        $stmt->bind_param("s", $binder);
+        $flow = "?§'";
+        $stmt = $this->conn->prepare("SELECT * FROM device WHERE device_name != ?");
+        $stmt->bind_param("s", $flow);
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();
@@ -339,18 +339,15 @@ class DbHandler {
     /**
      * Fetching all devices types
      */
-    public function getAllDevicesTypes() {
-        $sql = 'SELECT device_name FROM type';
-        //echo current($res);
-
-        $result = mysqli_query($this->conn,$sql) ;
-
-        while($row = $result->fetch_array())
-        {
-            echo $row['device_name'];
-            echo "<br />";
-        }
-
+    public function getAllDevicesTypes()
+    {
+        $flow = "?§'";
+        $stmt = $this->conn->prepare("SELECT * FROM type WHERE device_name != ?");
+        $stmt->bind_param("s", $flow);
+        $stmt->execute();
+        $tasks = $stmt->get_result();
+        $stmt->close();
+        return $tasks;
     }
 
 }
