@@ -148,10 +148,42 @@ class DbHandler {
      * @param String $user_id user id to whom task belongs to
      * @param String $task task text c50e6fc0b21707be27c348e87f900671
      */
+    public function createRecord($id, $user_id,$value) {
 
-    //
+        $response = array();
 
+        // First check if device already existed in db
+        if ($this->isDeviceExistsbyID($id) && $this->isUsersDevice($id,$user_id)) {
+            echo "ok";
+            // Generating password hash
+            $stmt = $this->conn->prepare("INSERT INTO `device_value` (`id`, `id_device`,`created_at`,`updated_at`,`device_val`) VALUES (NULL, ?, now(), now(), ?);");
+            $stmt->bind_param("is", $id, $value);
 
+            $result = $stmt->execute();
+
+            $stmt->close();
+
+            // Check for successful insertion
+            if ($result) {
+                // User successfully inserted
+                return USER_CREATED_SUCCESSFULLY;
+            } else {
+                // Failed to create user
+                return USER_CREATE_FAILED;
+            }
+        } else {
+            // User with same email already existed in the db
+            return USER_ALREADY_EXISTED;
+        }
+
+        return $response;
+    }
+
+    /**
+     * Creating new task
+     * @param String $user_id user id to whom task belongs to
+     * @param String $task task text c50e6fc0b21707be27c348e87f900671
+     */
     public function createDevice($device_name, $type, $user_id) {
 
         $response = array();
@@ -160,7 +192,7 @@ class DbHandler {
         if (!$this->isDeviceExists($device_name)) {
             echo "ok";
             // Generating password hash
-            $stmt = $this->conn->prepare("INSERT INTO `device` (`id_device`, `user_id`, `id_type`, `device_name`, `updated_at`, `created_at`, `unit`) VALUES (NULL, ?, ?, ?, '2017-04-06 00:00:00', '2017-04-14 00:00:00', 's');");
+            $stmt = $this->conn->prepare("INSERT INTO `device` (`id_device`, `user_id`, `id_type`, `device_name`, `updated_at`, `created_at`, `unit`) VALUES (NULL, ?, ?, ?, now(), now(), 's');");
             $stmt->bind_param("iis", $user_id,$type, $device_name);
 
             $result = $stmt->execute();
@@ -195,6 +227,34 @@ class DbHandler {
         }else{
             return 'Available';
         }
+    }
+
+    /**
+     * Fetching device by ID
+     * @param String $id
+     */
+    private function isDeviceExistsbyID($id) {
+        $stmt = $this->conn->prepare("SELECT device_name from device WHERE id_device = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->store_result();
+        $num_rows = $stmt->num_rows;
+        $stmt->close();
+        return $num_rows > 0;
+    }
+
+    /**
+     * Fetching device by ID
+     * @param String $id
+     */
+    private function isUsersDevice($id,$user) {
+        $stmt = $this->conn->prepare("SELECT device_name from device WHERE id_device = ? AND user_id = ?");
+        $stmt->bind_param("ii", $id,$user);
+        $stmt->execute();
+        $stmt->store_result();
+        $num_rows = $stmt->num_rows;
+        $stmt->close();
+        return $num_rows > 0;
     }
 
     /**

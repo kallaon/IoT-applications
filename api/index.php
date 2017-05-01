@@ -113,37 +113,39 @@ function authenticate(\Slim\Route $route) {
 }
 
 /**
- * Creating new record in db
- * method POST
- * params - name
- * url - /value/
+ * Creating new value record
+ * url - /device
+ * method - POST
+ * params - device_name, type,
  */
-/*
+
 $app->post('/value', 'authenticate', function() use ($app) {
     // check for required params
-    // verifyRequiredParams(array('value','id_device'));
-
+    verifyRequiredParams(array('id','value'));
     $response = array();
-    $dev = $app->request->post('id_device');
+
+    // reading post params
+    global $user_id;
+    $id = $app->request->post('id');
     $value = $app->request->post('value');
 
-    global $user_id;
     $db = new DbHandler();
+    $res = $db->createRecord($id, $user_id, $value);
 
-    // creating new task
-   // $task_id = $db->createRecord($id_device, $value);
-
-    if ($task_id != NULL) {
+    if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
-        $response["message"] = "Record created successfully";
-        //$response["task_id"] = $task_id;
-    } else {
+        $response["message"] = "Value successfully added";
+        echoRespnse(201, $response);
+    } else if ($res == USER_CREATE_FAILED) {
         $response["error"] = true;
-        $response["message"] = "Failed to create record. Please try again";
+        $response["message"] = "Oops! An error occurred while creating";
+        echoRespnse(200, $response);
+    } else if ($res == USER_ALREADY_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! Check our device ID or API key";
+        echoRespnse(200, $response);
     }
-    echoRespnse(201, $response);
 });
-*/
 
 /**
  * Creating new device
@@ -168,19 +170,20 @@ $app->post('/device', 'authenticate', function() use ($app) {
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
-        $response["message"] = "You are successfully registered";
+        $response["message"] = "Device successfully created";
         echoRespnse(201, $response);
     } else if ($res == USER_CREATE_FAILED) {
         $response["error"] = true;
-        $response["message"] = "Oops! An error occurred while registereing";
+        $response["message"] = "Oops! An error occurred while creating";
         echoRespnse(200, $response);
     } else if ($res == USER_ALREADY_EXISTED) {
         $response["error"] = true;
-        $response["message"] = "Sorry, this email already existed";
+        $response["message"] = "Sorry, this device name already existed";
         echoRespnse(200, $response);
     }
 });
 
+/* WORKING */
 /**
  * Return all device values
  * url - /value/:id
@@ -208,10 +211,12 @@ $app->get('/value/:id', function($id_device) {
         array_push($response["tasks"], $tmp);
     }
     echoRespnse(200, $response);
+
 });
 
+/* WORKING */
 /**
- * Return information about device
+ * Return information about device by ID
  * url - /device/:id
  * method - GET
  */
@@ -230,12 +235,16 @@ $app->get('/device/:id', function($id) {
     // looping through result and preparing tasks array
     while ($task = $result->fetch_assoc()) {
         $tmp = array();
+        $tmp["id_device"] = $task["id_device"];
+        $tmp["id_type"] = $task["id_type"];
         $tmp["device_name"] = $task["device_name"];
         $tmp["created_at"] = $task["created_at"];
         $tmp["updated_at"] = $task["updated_at"];
+        $tmp["unit"] = $task["unit"];
         array_push($response["tasks"], $tmp);
     }
     echoRespnse(200, $response);
+
 });
 
 /**

@@ -196,7 +196,7 @@
                 <div class="list-group">
                 </div>
                 <div class="list-group-item">
-                    <span class="badge">0e25c084bb8a1882be8bf54e842d6c16</span>
+                    <span class="badge">{{ auth.api_key }}</span>
                     <i class="fa fa-fw fa-key"></i> API key
                 </div>
                 <div class="list-group-item">

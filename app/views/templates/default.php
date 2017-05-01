@@ -62,7 +62,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ urlFor('dashboard') }}">IoT</a>
+            <a class="navbar-brand" href="{{ urlFor('dashboard') }}">Internet of Things</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
@@ -120,7 +120,7 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa fa-cloud"></i> API Guide</a>
+                        <a href="{{ urlFor('api_guide') }}"><i class="fa fa fa-cloud"></i> API Guide</a>
                     </li>
 
                     <li>
@@ -159,18 +159,14 @@
             {% include 'templates/partials/messages.php' %}
 
             {% block content %}{% endblock %}
+
         </div>
         <!-- /.container-fluid -->
-
     </div>
     <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
-
-
-
-
 </body>
 
 </html>

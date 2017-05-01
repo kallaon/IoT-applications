@@ -46,7 +46,7 @@ $app->get('/devices/:id', $authenticated(), function ($id) use($app)
         $unit = Capsule::table('device')->where('id_device','=',$id)->min('unit');
         //$unit = Capsule::table('device')->select('unit')->where('id_device','=',$id)->get();
         //var_dump($tabulka);
-       var_dump($device);
+       //var_dump($device);
         $unit1 = $unit;
         if($unit == "c"){
             $unit1 = "°C";

@@ -15,3 +15,4 @@ require INC_ROOT . '/app/routes/user/dashboard.php';
 require INC_ROOT . '/app/routes/user/addtype.php';
 require INC_ROOT . '/app/routes/user/delete_dashboard.php';
 require INC_ROOT . '/app/routes/user/user_guide.php';
+require INC_ROOT . '/app/routes/user/api_guide.php';

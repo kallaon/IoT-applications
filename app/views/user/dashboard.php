@@ -1,6 +1,6 @@
 {% extends 'templates/default.php' %}
 
-{% block tittle %}IoT | Dashboard{% endblock %}
+{% block title %} Dashboard {% endblock %}
 
 {% block content %}
 
