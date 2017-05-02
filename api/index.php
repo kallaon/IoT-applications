@@ -146,7 +146,8 @@ $app->post('/value', 'authenticate', function() use ($app) {
         echoRespnse(200, $response);
     }
 });
-
+//TODO: ide viacmenej naoko, užívateľ môže vytvárať zaraideniam iným užívateĽom
+//TODO: nemam premyslene ako tam davat typy zariadeni
 /**
  * Creating new device
  * url - /device
